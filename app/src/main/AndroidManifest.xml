@@ -30,8 +30,9 @@
         <activity android:name=".BrowseItemsActivity" />
         <activity
             android:name=".YourCartActivity"
-            android:theme="@style/cometbites_defaulttheme"></activity>
-        <activity android:name=".SignUpActivity"></activity>
+            android:theme="@style/cometbites_defaulttheme" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".PhoneVerifyActivity"></activity>
     </application>
 
 </manifest>
