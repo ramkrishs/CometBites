@@ -21,7 +21,7 @@ public class LandingActivity extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(LandingActivity.this, BrowseFoodJointsActivity.class);
+                Intent intent=new Intent(LandingActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
