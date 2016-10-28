@@ -10,4 +10,59 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.utdallas.cometbites.PhoneVerifyActivity">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/landing_page_image"
+            android:id="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Enter verification code sent to your phone:"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="230dp"
+        android:id="@+id/signup_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_code"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="5"
+                android:gravity="center"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/next"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 </RelativeLayout>

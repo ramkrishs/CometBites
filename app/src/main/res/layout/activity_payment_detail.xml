@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_sign_up"
+    android:id="@+id/activity_payment_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.utdallas.cometbites.SignUpActivity">
+    tools:context="edu.utdallas.cometbites.PaymentDetailActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/landing_page_image"
-            android:id="@+id/imageView2"
+            android:layout_height="150dp"
+            android:src="@drawable/credit_card"
+            android:id="@+id/credit_card"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
+        <TextView
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/credit_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter card details:"/>
 
     </RelativeLayout>
 
@@ -37,8 +44,9 @@
             <AutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
+                android:hint="@string/prompt_cardnum"
+                android:inputType="number"
+                android:maxLength="16"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -52,8 +60,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
+                android:hint="@string/prompt_cvv"
+                android:inputType="numberPassword"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -66,23 +74,35 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_phone"
-                android:inputType="phone"
+                android:hint="@string/prompt_expMonth"
+                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_expYear"
+                android:inputType="number"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+        </android.support.design.widget.TextInputLayout>
 
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/finish"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/next"
+            android:text="@string/finish"
             android:textStyle="bold" />
 
     </LinearLayout>
-
 </RelativeLayout>

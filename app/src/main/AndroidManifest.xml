@@ -32,7 +32,8 @@
             android:name=".YourCartActivity"
             android:theme="@style/cometbites_defaulttheme" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".PhoneVerifyActivity"></activity>
+        <activity android:name=".PhoneVerifyActivity" />
+        <activity android:name=".PaymentDetailActivity"></activity>
     </application>
 
 </manifest>
