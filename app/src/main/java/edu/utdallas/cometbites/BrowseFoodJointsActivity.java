@@ -27,6 +27,7 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_food_joints);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Select Restaurant");
         setSupportActionBar(toolbar);
 
 

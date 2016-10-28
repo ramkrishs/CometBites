@@ -6,7 +6,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="cancel_order_link"><u>Cancel Order</u></string>
+    <string name="cancel_order_link">Cancel Order</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">NetID@utdallas.edu</string>

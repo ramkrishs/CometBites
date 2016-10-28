@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_centerHorizontal="true"
         android:layout_width="fill_parent"
         android:layout_height="60dp">
 
@@ -26,12 +25,12 @@
         android:layout_height="wrap_content">
         
         <ListView
-            android:id="@+id/iteams_in_cart_list_view"
+            android:id="@+id/items_in_cart_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
             <!--this is for the items -->
-            
+
         </ListView>
         
         
@@ -88,7 +87,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="30dp"
-                android:text="$6.49"
+                android:text="$0.12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -112,7 +111,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="30dp"
-                android:text="$6.49"
+                android:text="$6.61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -121,26 +120,35 @@
 
     </LinearLayout>
 
+    <RelativeLayout
 
-    <Button
-    android:text="Checkout"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/table_cart"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="156dp"
-    android:id="@+id/checkoutButton" />
+        android:layout_marginTop="170dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
 
-        android:textColor="#0a4dc1"
-        android:text="@string/cancel_order_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:id="@+id/cancelOrderButton"
-        android:layout_below="@+id/checkoutButton"
-        android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="Checkout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:id="@+id/checkoutButton" />
+
+        <TextView
+
+            android:textColor="#0a4dc1"
+            android:text="@string/cancel_order_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:id="@+id/cancelOrderButton"
+            android:layout_below="@+id/checkoutButton"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
 
 
 </LinearLayout>
