@@ -1,117 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:orientation="vertical">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:text="Subway Restaurant \n Estimated Time: 5-10 min " />
+        />
+    </RelativeLayout>
+    
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:stretchColumns="3"
-        android:id="@+id/heading_checkout">
+        android:layout_height="wrap_content">
+        
+        <ListView
+            android:id="@+id/iteams_in_cart_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <!--this is for the items -->
+            
+        </ListView>
+        
+        
+        
+        
+    </RelativeLayout>
 
-        <TableRow
+    
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
             android:background="@drawable/cell_shape"
-            android:textAlignment="center">
-
-            <TextView
-                android:textSize="30sp"
-                android:layout_gravity="center"
-                android:text="Subway Restaurant \n Estimated Time: 5-10 min " />
-        </TableRow>
-        </TableLayout>
-
-    <TableLayout
-        android:id="@+id/table_cart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp">
-
-        <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@drawable/cell_shape">
+            android:layout_height="60dp">
+
 
             <TextView
-                android:layout_gravity="left"
-                android:background="@drawable/cell_shape"
-                android:padding="20dip"
-                android:text="1X\t\t\t\t\t\t"
-                android:textAlignment="center" />
+                android:id="@+id/subtotalText"
+                android:textSize="20sp"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"
+                android:text="Subtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:background="@drawable/cell_shape"
-                android:layout_gravity="center"
-                android:padding="20dip"
-                android:text="Subway Club"
-                android:textAlignment="center" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:text="$6.49"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <TextView
-                android:background="@drawable/cell_shape"
-                android:layout_gravity="right"
-                android:padding="20dip"
-                android:text="$6.49" />
-        </TableRow>
+        </RelativeLayout>
 
-        <TableRow
+        <RelativeLayout
             android:background="@drawable/cell_shape"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="fill_parent"
+            android:layout_height="60dp">
+
 
             <TextView
-                android:padding="10dip" />
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/cell_shape">
+                android:textSize="20sp"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"
+                android:text="Tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:layout_gravity="left"
-                android:padding="10dip"
-                android:text="Subtotal" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:text="$6.49"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@drawable/cell_shape"
+            android:layout_width="fill_parent"
+            android:layout_height="60dp">
+
 
             <TextView
-                android:layout_gravity="right"
-                android:padding="10dip"
-                android:text="$6.49" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/cell_shape">
+                android:textSize="20sp"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"
+                android:text="Total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
-                android:layout_gravity="left"
-                android:padding="10dip"
-                android:text="Tax" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:text="$6.49"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_gravity="right"
-                android:padding="10dip"
-                android:text="$0.12" />
-        </TableRow>
+        </RelativeLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/cell_shape">
 
-            <TextView
-                android:layout_gravity="left"
-                android:padding="10dip"
-                android:text="Total" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_gravity="right"
-                android:padding="10dip"
-                android:text="$6.61" />
-        </TableRow>
-
-    </TableLayout>
 
     <Button
     android:text="Checkout"
@@ -122,16 +131,16 @@
     android:layout_marginTop="156dp"
     android:id="@+id/checkoutButton" />
 
-    <Button
-        android:text="Cancel Order"
+    <TextView
+
+        android:textColor="#0a4dc1"
+        android:text="@string/cancel_order_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkoutButton"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:background="#be1b1b"
-        android:id="@+id/cancelOrderButton" />
+        android:id="@+id/cancelOrderButton"
+        android:layout_below="@+id/checkoutButton"
+        android:layout_centerHorizontal="true" />
 
 
-
-</RelativeLayout>
+</LinearLayout>

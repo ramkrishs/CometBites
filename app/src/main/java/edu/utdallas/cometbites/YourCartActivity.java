@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class YourCartActivity extends AppCompatActivity {
@@ -15,7 +16,7 @@ public class YourCartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_your_cart);
 
 
-        Button cancelButton= (Button)findViewById(R.id.cancelOrderButton);
+        TextView cancelButton= (TextView) findViewById(R.id.cancelOrderButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
