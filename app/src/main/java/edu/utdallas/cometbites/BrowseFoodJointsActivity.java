@@ -40,10 +40,10 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        FoodJoint f1 = new FoodJoint("Chic-fil-A", R.drawable.chicfila, "5-10 min");
-        FoodJoint f2 = new FoodJoint("Panda Express", R.drawable.panda, "10-15 min");
-        FoodJoint f3 = new FoodJoint("Subway", R.drawable.subway, "10 min");
-        FoodJoint f4 = new FoodJoint("Create", R.drawable.create, "20 min");
+        FoodJoint f1 = new FoodJoint(R.drawable.chicfile, "5-10 min");
+        FoodJoint f2 = new FoodJoint(R.drawable.panda, "10-15 min");
+        FoodJoint f3 = new FoodJoint(R.drawable.subway, "10 min");
+        FoodJoint f4 = new FoodJoint(R.drawable.create, "20 min");
 
         List<FoodJoint> list = new LinkedList<>();
         list.add(f1);

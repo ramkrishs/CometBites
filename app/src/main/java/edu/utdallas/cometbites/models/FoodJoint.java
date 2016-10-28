@@ -6,12 +6,10 @@ package edu.utdallas.cometbites.models;
 
 public class FoodJoint {
     private Integer logo;
-    private String name;
     private String estTime;
 
-    public FoodJoint(String name, Integer logo, String estTime) {
+    public FoodJoint(Integer logo, String estTime) {
         this.logo = logo;
-        this.name = name;
         this.estTime = estTime;
     }
 
@@ -24,14 +22,6 @@ public class FoodJoint {
 
     public void setLogo(Integer logo) {
         this.logo = logo;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEstTime() {

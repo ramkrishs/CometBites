@@ -43,11 +43,9 @@ public class BrowseFoodJointsListAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View v = View.inflate(mContext, R.layout.joints_list_view, null);
         ImageView logo = (ImageView) v.findViewById(R.id.joint_image);
-        TextView name= (TextView) v.findViewById(R.id.joint_name);
         TextView wait_time= (TextView) v.findViewById(R.id.wait_time);
 
         FoodJoint foodJoint = foodJointList.get(i);
-        name.setText(foodJoint.getName());
         wait_time.setText(foodJoint.getEstTime());
         logo.setImageResource(foodJoint.getLogo());
         return v;
