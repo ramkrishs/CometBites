@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/joint_image"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/chicfila" />
+
+    <TextView
+        android:id="@+id/joint_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/joint_image"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/joint_image"
+        android:text="Chic-Fil-A"
+        android:textSize="25sp"
+        android:textColor="#808080"/>
+
+    <TextView
+        android:id="@+id/est_wait_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Est Wait Time"
+        android:textColor="#808080"/>
+
+    <TextView
+        android:id="@+id/wait_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/est_wait_time_text"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="10 min"
+        android:textSize="20sp"
+        android:textColor="#808080"/>
+</RelativeLayout>

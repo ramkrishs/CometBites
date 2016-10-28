@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_browse_items"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6b6b6b"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.utdallas.cometbites.BrowseItemsActivity">
+<!--
+    <TextView
+        android:id="@+id/Menu"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Menu"
+        android:textColor="#808080"/>
+        -->
+    <ListView
+        android:id="@+id/browseItemListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:divider="#e2ba7d"
+        android:dividerHeight="5dp">
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="3"
+        android:id="@+id/heading_checkout">
+
+        <TableRow
+            android:background="@drawable/cell_shape"
+            android:textAlignment="center">
+
+            <TextView
+                android:textSize="30sp"
+                android:layout_gravity="center"
+                android:text="Subway Restaurant \n Estimated Time: 5-10 min " />
+        </TableRow>
+        </TableLayout>
+
+    <TableLayout
+        android:id="@+id/table_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_gravity="left"
+                android:background="@drawable/cell_shape"
+                android:padding="20dip"
+                android:text="1X\t\t\t\t\t\t"
+                android:textAlignment="center" />
+
+            <TextView
+                android:background="@drawable/cell_shape"
+                android:layout_gravity="center"
+                android:padding="20dip"
+                android:text="Subway Club"
+                android:textAlignment="center" />
+
+            <TextView
+                android:background="@drawable/cell_shape"
+                android:layout_gravity="right"
+                android:padding="20dip"
+                android:text="$6.49" />
+        </TableRow>
+
+        <TableRow
+            android:background="@drawable/cell_shape"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:padding="10dip" />
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_gravity="left"
+                android:padding="10dip"
+                android:text="Subtotal" />
+
+            <TextView
+                android:layout_gravity="right"
+                android:padding="10dip"
+                android:text="$6.49" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_gravity="left"
+                android:padding="10dip"
+                android:text="Tax" />
+
+            <TextView
+                android:layout_gravity="right"
+                android:padding="10dip"
+                android:text="$0.12" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/cell_shape">
+
+            <TextView
+                android:layout_gravity="left"
+                android:padding="10dip"
+                android:text="Total" />
+
+            <TextView
+                android:layout_gravity="right"
+                android:padding="10dip"
+                android:text="$6.61" />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:text="Checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/table_cart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="156dp"
+        android:id="@+id/checkoutButton" />
+
+
+
+</RelativeLayout>
