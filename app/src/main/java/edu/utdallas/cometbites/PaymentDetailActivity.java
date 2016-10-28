@@ -18,8 +18,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        Button nextButton= (Button)findViewById(R.id.finish);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        Button finishButton= (Button)findViewById(R.id.finish);
+        finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_SHORT).show();

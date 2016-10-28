@@ -17,6 +17,8 @@
     <string name="prompt_phone">Phone</string>
     <string name="prompt_code">Code</string>
     <string name="next">Next</string>
+    <string name="placeOrder">Place Order</string>
+    <string name="eticket">Get E-ticket</string>
     <string name="finish">Finish</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up</string>

@@ -114,13 +114,23 @@
     </TableLayout>
 
     <Button
-        android:text="Checkout"
+    android:text="Checkout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/table_cart"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="156dp"
+    android:id="@+id/checkoutButton" />
+
+    <Button
+        android:text="Cancel Order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/table_cart"
+        android:layout_below="@+id/checkoutButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="156dp"
-        android:id="@+id/checkoutButton" />
+        android:layout_marginTop="16dp"
+        android:background="#be1b1b"
+        android:id="@+id/cancelOrderButton" />
 
 
 
