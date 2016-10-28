@@ -30,7 +30,6 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -41,20 +40,20 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        FoodJoint f1 = new FoodJoint("Chic-fil-A",R.drawable.chicfila,"5-10 min");
-        FoodJoint f2 = new FoodJoint("Panda Express",R.drawable.panda,"10-15 min");
-        FoodJoint f3= new FoodJoint("Subway", R.drawable.subway,"10 min");
-        FoodJoint f4= new FoodJoint("Create",R.drawable.create,"20 min");
+        FoodJoint f1 = new FoodJoint("Chic-fil-A", R.drawable.chicfila, "5-10 min");
+        FoodJoint f2 = new FoodJoint("Panda Express", R.drawable.panda, "10-15 min");
+        FoodJoint f3 = new FoodJoint("Subway", R.drawable.subway, "10 min");
+        FoodJoint f4 = new FoodJoint("Create", R.drawable.create, "20 min");
 
-        List<FoodJoint> list= new LinkedList<>();
+        List<FoodJoint> list = new LinkedList<>();
         list.add(f1);
         list.add(f2);
         list.add(f3);
         list.add(f4);
 
-        BrowseFoodJointsListAdapter adapter= new BrowseFoodJointsListAdapter(getApplicationContext(),list);
+        BrowseFoodJointsListAdapter adapter = new BrowseFoodJointsListAdapter(getApplicationContext(), list);
 
-        ListView listView= (ListView) findViewById(R.id.foodJointsListView);
+        ListView listView = (ListView) findViewById(R.id.foodJointsListView);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -109,8 +108,6 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
