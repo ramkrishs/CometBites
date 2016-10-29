@@ -32,5 +32,13 @@ public class EticketActivity extends Activity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(EticketActivity.this, BrowseFoodJointsActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
