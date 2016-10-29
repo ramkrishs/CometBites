@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="schemas.android.com/tools"
+    tools:context="com.example.sample.YourActivity"
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/action_bar_cart"
+        android:orderInCategory="100"
+        android:title="Cart"
+        android:icon="@drawable/cart"
+        yourapp:showAsAction="ifRoom" />
+
+</menu>

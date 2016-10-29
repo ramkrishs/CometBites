@@ -5,9 +5,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class ItemDescriptionActivity extends AppCompatActivity {
 
@@ -24,14 +26,38 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
+        ImageButton minusButton = (ImageButton) findViewById(R.id.minus_button);
+        ImageButton plusButton = (ImageButton) findViewById(R.id.add_button);
 
-        ImageButton addToCartButton= (ImageButton) findViewById(R.id.addtocart);
+        minusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView quantityTextView = (TextView) findViewById(R.id.quantityTextView);
+                int quantity = Integer.parseInt(quantityTextView.getText().toString());
+                if (quantity > 0) {
+                    quantityTextView.setText(String.valueOf(--quantity));
+                }
+            }
+        });
+
+
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView quantityTextView = (TextView) findViewById(R.id.quantityTextView);
+                int quantity = Integer.parseInt(quantityTextView.getText().toString());
+                quantityTextView.setText(String.valueOf(++quantity));
+            }
+        });
+
+
+        Button addToCartButton = (Button) findViewById(R.id.addToCartButton);
         addToCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(ItemDescriptionActivity.this,YourCartActivity.class);
+                Intent intent = new Intent(ItemDescriptionActivity.this, BrowseItemListActivity2.class);
+
                 startActivity(intent);
-                finish();
             }
         });
     }

@@ -10,6 +10,7 @@
         />
 
     <TextView
+        android:layout_marginTop="20dp"
         android:id="@+id/itemName"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/itemImage"

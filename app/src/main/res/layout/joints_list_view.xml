@@ -9,43 +9,40 @@
         android:layout_width="match_parent"
         android:layout_height="80dp">
 
-
         <ImageView
-            android:scaleType="fitXY"
             android:id="@+id/joint_image"
             android:layout_width="fill_parent"
             android:layout_height="80dp"
-            android:src="@drawable/chicfile"
-            />
+            android:scaleType="fitXY"
+            android:src="@drawable/chicfile" />
     </RelativeLayout>
 
 
     <RelativeLayout
-        android:background="#fff"
-        android:layout_below="@id/joint_image_layout"
         android:layout_width="match_parent"
-        android:layout_height="20dp">
+        android:layout_height="20dp"
+        android:layout_below="@id/joint_image_layout"
+        android:background="@drawable/list_view_border">
 
         <TextView
             android:id="@+id/est_wait_time_text"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:background="@android:drawable/ic_menu_recent_history"
-            android:textColor="@color/textColor"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp"
-            />
+            android:background="@android:drawable/ic_menu_recent_history"
+            android:textColor="@color/textColor" />
 
         <TextView
             android:id="@+id/wait_time"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="10 min"
-            android:textSize="15sp"
-            android:textColor="@color/textColor"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="3dp"
-            android:layout_marginLeft="30dp" />
+            android:layout_marginLeft="30dp"
+            android:text="10 min"
+            android:textColor="@color/textColor"
+            android:textSize="15sp" />
     </RelativeLayout>
 
 

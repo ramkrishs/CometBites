@@ -6,13 +6,24 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
 
-public class EticketActivity extends Activity {
+public class EticketActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eticket);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_eticket_page);
+        toolbar.setTitle("E-ticket Generated");
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -33,6 +44,17 @@ public class EticketActivity extends Activity {
             dialog.show();
         }
 
+
+        Button eatMoreButton = (Button) findViewById(R.id.eatMoreButton);
+        eatMoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EticketActivity.this, BrowseFoodJointsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     @Override
@@ -40,5 +62,14 @@ public class EticketActivity extends Activity {
         Intent intent = new Intent(EticketActivity.this, BrowseFoodJointsActivity.class);
         startActivity(intent);
         finish();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        Intent intent = new Intent(EticketActivity.this, BrowseFoodJointsActivity.class);
+        startActivity(intent);
+        finish();
+        return true;
     }
 }

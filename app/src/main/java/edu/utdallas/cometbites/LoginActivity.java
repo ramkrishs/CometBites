@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -70,6 +71,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_login_activity);
+        toolbar.setTitle("Get Started");
+        setSupportActionBar(toolbar);
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -105,7 +110,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                 Intent i= new Intent(LoginActivity.this,SignUpActivity.class);
                 startActivity(i);
-                finish();
             }
         });
 

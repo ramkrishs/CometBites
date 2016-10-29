@@ -59,7 +59,7 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/quantity"
+            android:id="@+id/quantityTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_description1"
@@ -72,35 +72,34 @@
             />
 
         <ImageButton
-            android:id="@+id/delete"
+            android:id="@+id/minus_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_description1"
             android:layout_marginEnd="23dp"
             android:layout_marginTop="23dp"
-            android:layout_toStartOf="@+id/quantity"
+            android:layout_toStartOf="@+id/quantityTextView"
             android:background="#FFF"
             android:src="@drawable/minus" />
 
         <ImageButton
-            android:id="@+id/add"
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/delete"
+            android:layout_alignTop="@+id/minus_button"
             android:layout_marginStart="22dp"
-            android:layout_toEndOf="@+id/quantity"
+            android:layout_toEndOf="@+id/quantityTextView"
             android:background="#FFF"
             android:src="@drawable/plus" />
 
-        <ImageButton
-            android:id="@+id/addtocart"
-            android:layout_width="wrap_content"
+        <Button
+            android:text="Add To Cart"
+            android:layout_marginTop="35dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/delete"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
-            android:background="#FFF"
-            android:src="@drawable/addtocart" />
+            android:layout_width="250dp"
+            android:id="@+id/addToCartButton"
+            android:layout_below="@+id/minus_button"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
