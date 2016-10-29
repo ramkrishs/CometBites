@@ -23,6 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(SignUpActivity.this,PhoneVerifyActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

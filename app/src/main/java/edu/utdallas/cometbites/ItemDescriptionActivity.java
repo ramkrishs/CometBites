@@ -17,7 +17,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_description);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_item_description);
-        toolbar.setTitle("Select Item");
+        toolbar.setTitle("Item Description");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -31,6 +31,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent= new Intent(ItemDescriptionActivity.this,YourCartActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

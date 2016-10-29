@@ -34,7 +34,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".PhoneVerifyActivity" />
         <activity android:name=".PaymentDetailActivity" />
-        <activity android:name=".OrderConfirmationActivity"></activity>
+        <activity android:name=".OrderConfirmationActivity" />
+        <activity android:name=".EticketActivity"></activity>
     </application>
 
 </manifest>

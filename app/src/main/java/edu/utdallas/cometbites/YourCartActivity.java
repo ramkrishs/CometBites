@@ -3,6 +3,7 @@ package edu.utdallas.cometbites;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -18,6 +19,7 @@ public class YourCartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        final String TAG = "CartActivity";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_cart);
 
@@ -26,8 +28,11 @@ public class YourCartActivity extends AppCompatActivity {
 
         List<CartItem> cartItemList = new LinkedList<>();
         cartItemList.add(new CartItem("1X", "Subway Club", "$6.49"));
+        Log.d(TAG, "onCreate: " + cartItemList);
         ItemCartAdapter itemCartAdapter = new ItemCartAdapter(cartItemList, getApplicationContext());
         listView.setAdapter(itemCartAdapter);
+
+        Log.d(TAG, "onCreate: " + "Successfully set the adapter");
 
 
         TextView cancelButton= (TextView) findViewById(R.id.cancelOrderButton);
@@ -37,6 +42,7 @@ public class YourCartActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Order Cancelled",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(YourCartActivity.this, BrowseFoodJointsActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -46,6 +52,7 @@ public class YourCartActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(YourCartActivity.this, OrderConfirmationActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 

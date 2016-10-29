@@ -35,8 +35,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--------------------------------------------OR------------------------------------------"
-        android:layout_centerHorizontal="false"
+        android:text="OR"
+        android:textSize="32dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
         android:layout_below="@id/placeOrder"
         android:id="@+id/or"/>

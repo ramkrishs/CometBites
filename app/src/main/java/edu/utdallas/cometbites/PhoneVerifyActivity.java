@@ -22,6 +22,7 @@ public class PhoneVerifyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(PhoneVerifyActivity.this, PaymentDetailActivity.class);
                 startActivity(i);
+                finish();
             }
         });
     }

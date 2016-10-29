@@ -5,7 +5,7 @@
     android:id="@+id/activity_browse_items"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6b6b6b"
+    android:background="#e2ba7d"
     tools:context="edu.utdallas.cometbites.BrowseItemsActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -24,14 +24,16 @@
     </android.support.design.widget.AppBarLayout>
 
     <ListView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_below="@id/toolbar_browse_items"
         android:id="@+id/browseItemListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
         android:divider="#e2ba7d"
-        android:dividerHeight="5dp">
+        android:dividerHeight="10dp">
     </ListView>
 
 </RelativeLayout>

@@ -30,8 +30,8 @@ public class BrowseItemsActivity extends AppCompatActivity {
 
         List<Item> itemList = new LinkedList<>();
 
-        itemList.add(new Item(R.drawable.sub1, "Chicken Sub", "$8.99"));
-        itemList.add(new Item(R.drawable.sub2, "Bacon Sub", "$10.99"));
+        itemList.add(new Item(R.drawable.sub1, "Rotisserie-Style Chicken ", "$7.95"));
+        itemList.add(new Item(R.drawable.sub2, "Subway Club", "$7.95"));
 
         ListView listView = (ListView) findViewById(R.id.browseItemListView);
         BrowseItemsAdapter adapter = new BrowseItemsAdapter(itemList, getApplicationContext());
@@ -42,6 +42,7 @@ public class BrowseItemsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 startActivity(new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class));
+                finish();
             }
         });
 

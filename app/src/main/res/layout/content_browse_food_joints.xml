@@ -10,14 +10,14 @@
     tools:showIn="@layout/app_bar_browse_food_joints">
 
     <ListView
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/foodJointsListView"
-        android:divider="#CCCCCC"
-        android:dividerHeight="5dp">
+        android:divider="#e2ba7d"
+        android:dividerHeight="10dp">
 
     </ListView>
 </RelativeLayout>

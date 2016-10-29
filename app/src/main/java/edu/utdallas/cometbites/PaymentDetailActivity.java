@@ -25,6 +25,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Registration Successful",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(PaymentDetailActivity.this, BrowseFoodJointsActivity.class);
                 startActivity(i);
+                finish();
             }
         });
     }

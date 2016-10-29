@@ -32,8 +32,10 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Order placed!!!",Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(OrderConfirmationActivity.this, BrowseFoodJointsActivity.class);
+                Intent i=new Intent(OrderConfirmationActivity.this, EticketActivity.class);
+                i.putExtra("paid", true);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -42,8 +44,10 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Generating E-ticket...",Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(OrderConfirmationActivity.this, OrderConfirmationActivity.class);
+                Intent i=new Intent(OrderConfirmationActivity.this, EticketActivity.class);
+                i.putExtra("paid", false);
                 startActivity(i);
+                finish();
             }
         });
 
