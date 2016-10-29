@@ -42,7 +42,6 @@ public class BrowseItemsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 startActivity(new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class));
-                finish();
             }
         });
 
