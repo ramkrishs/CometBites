@@ -10,9 +10,6 @@ import java.util.List;
 
 import edu.utdallas.cometbites.models.CartItem;
 
-/**
- * Created by salilkansal on 10/28/16.
- */
 
 public class ItemCartAdapter extends BaseAdapter {
     private List<CartItem> itemsInCart;
