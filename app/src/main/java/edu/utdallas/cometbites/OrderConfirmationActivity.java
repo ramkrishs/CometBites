@@ -1,6 +1,7 @@
 package edu.utdallas.cometbites;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -38,6 +39,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         placeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Toast.makeText(getApplicationContext(),"Order placed!!!",Toast.LENGTH_SHORT).show();
                 Intent i=new Intent(OrderConfirmationActivity.this, EticketActivity.class);
                 i.putExtra("paid", true);

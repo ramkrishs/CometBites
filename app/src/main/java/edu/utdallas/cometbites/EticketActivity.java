@@ -3,6 +3,7 @@ package edu.utdallas.cometbites;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class EticketActivity extends AppCompatActivity {
+
+    private static final String PREFS_NAME = "my_cart";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,11 @@ public class EticketActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
+        SharedPreferences myPrefs= getSharedPreferences(PREFS_NAME,0);
+        SharedPreferences.Editor editor = myPrefs.edit();
+        editor.clear();
+        editor.commit();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

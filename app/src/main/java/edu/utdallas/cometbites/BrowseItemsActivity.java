@@ -82,7 +82,8 @@ public class BrowseItemsActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         } else if (item.getItemId() == R.id.action_bar_cart) {
-            Toast.makeText(getApplicationContext(), "No Items in Cart.", Toast.LENGTH_LONG).show();
+            Intent i=new Intent(BrowseItemsActivity.this, YourCartActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
