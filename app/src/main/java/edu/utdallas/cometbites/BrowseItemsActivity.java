@@ -43,11 +43,13 @@ public class BrowseItemsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final String logoURL = bundle.getString("logoURL");
 
-        List<Item> itemList = new LinkedList<>();
 
-        itemList.add(new Item(R.drawable.sub1, "Rotisserie-Style Chicken ", "$7.95"));
-        itemList.add(new Item(R.drawable.sub2, "Subway Club", "$7.95"));
+        final List<Item> itemList = restClient.getItemsList(logoURL);
+
 
         ListView listView = (ListView) findViewById(R.id.browseItemListView);
         BrowseItemsAdapter adapter = new BrowseItemsAdapter(itemList, getApplicationContext());
@@ -57,7 +59,14 @@ public class BrowseItemsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class));
+                Intent intent1 = new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class);
+                Item currItem = itemList.get(i);
+                intent1.putExtra("itemname", currItem.getName());
+                intent1.putExtra("itemprice", currItem.getPrice());
+                intent1.putExtra("itemimageURL", currItem.getImage());
+                intent1.putExtra("itemdesc", currItem.getDescription());
+                intent1.putExtra("logoURL", logoURL);
+                startActivity(intent1);
             }
         });
 
@@ -82,7 +91,7 @@ public class BrowseItemsActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         } else if (item.getItemId() == R.id.action_bar_cart) {
-            Intent i=new Intent(BrowseItemsActivity.this, YourCartActivity.class);
+            Intent i = new Intent(BrowseItemsActivity.this, YourCartActivity.class);
             startActivity(i);
         }
 

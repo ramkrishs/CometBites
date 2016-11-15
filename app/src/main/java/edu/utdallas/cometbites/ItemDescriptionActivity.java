@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -32,6 +35,30 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        ImageView itemImage = (ImageView) findViewById(R.id.item_image1);
+        TextView itemNameTextView = (TextView) findViewById(R.id.item_name1);
+        TextView priceTextView = (TextView) findViewById(R.id.item_price);
+        TextView itemDescriptionTextView = (TextView) findViewById(R.id.item_description1);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+
+        String itemName = bundle.getString("itemname");
+        String itemPrice = bundle.getString("itemprice");
+        String itemImageURL = bundle.getString("itemimageURL");
+        String itemDesc = bundle.getString("itemdesc");
+
+        final String logoURL = bundle.getString("logoURL");
+
+
+
+        UrlImageViewHelper.setUrlDrawable(itemImage, itemImageURL);
+        itemNameTextView.setText(itemName);
+        priceTextView.setText(itemPrice);
+        itemDescriptionTextView.setText(itemDesc);
+
+
 
 
         ImageButton minusButton = (ImageButton) findViewById(R.id.minus_button);
@@ -93,10 +120,11 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
 
                 editor.putString(item_name, itemInfo);
-                editor.commit();
+                editor.apply();
                 Log.d("Item Description", "onClick: " + myPrefs.getAll().toString());
                 Toast.makeText(ItemDescriptionActivity.this, item_name + " is successfully added to the cart", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ItemDescriptionActivity.this, BrowseItemsActivity.class);
+                intent.putExtra("logoURL", logoURL);
                 startActivity(intent);
 
 

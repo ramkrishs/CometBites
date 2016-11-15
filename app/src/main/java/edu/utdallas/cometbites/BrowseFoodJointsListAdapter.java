@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import java.util.List;
 
 import edu.utdallas.cometbites.models.FoodJoint;
@@ -47,7 +49,7 @@ public class BrowseFoodJointsListAdapter extends BaseAdapter {
 
         FoodJoint foodJoint = foodJointList.get(i);
         wait_time.setText(foodJoint.getEstTime());
-        logo.setImageResource(foodJoint.getLogo());
+        UrlImageViewHelper.setUrlDrawable(logo, foodJoint.getLogo());
         return v;
     }
 }

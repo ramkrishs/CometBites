@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             boolean valid = true;
 
             if(valid){
+                Toast.makeText(getApplicationContext(), "Logged in as "+email, Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, BrowseFoodJointsActivity.class));
             }
         }

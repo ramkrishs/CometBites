@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
+
 import java.util.List;
 
 import edu.utdallas.cometbites.models.FoodJoint;
@@ -51,7 +53,7 @@ public class BrowseItemsAdapter extends BaseAdapter {
         Item item = itemList.get(i);
         name.setText(item.getName());
         price.setText(item.getPrice());
-        image.setImageResource(item.getImage());
+        UrlImageViewHelper.setUrlDrawable(image, item.getImage());
         return v;
     }
 }

@@ -41,16 +41,8 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        FoodJoint f1 = new FoodJoint(R.drawable.chicfile, "5-10 min");
-        FoodJoint f2 = new FoodJoint(R.drawable.panda, "10-15 min");
-        FoodJoint f3 = new FoodJoint(R.drawable.subway, "10 min");
-        FoodJoint f4 = new FoodJoint(R.drawable.create, "20 min");
+        final List<FoodJoint> list = restClient.getFoodJointsList();
 
-        List<FoodJoint> list = new LinkedList<>();
-        list.add(f1);
-        list.add(f2);
-        list.add(f3);
-        list.add(f4);
 
         BrowseFoodJointsListAdapter adapter = new BrowseFoodJointsListAdapter(getApplicationContext(), list);
 
@@ -60,7 +52,9 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(BrowseFoodJointsActivity.this, BrowseItemsActivity.class));
+                Intent intent = new Intent(BrowseFoodJointsActivity.this, BrowseItemsActivity.class);
+                intent.putExtra("logoURL", list.get(i).getLogo());
+                startActivity(intent);
             }
         });
 

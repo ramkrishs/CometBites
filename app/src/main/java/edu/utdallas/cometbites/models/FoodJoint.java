@@ -5,23 +5,23 @@ package edu.utdallas.cometbites.models;
  */
 
 public class FoodJoint {
-    private Integer logo;
+    private String logoURL;
     private String estTime;
 
-    public FoodJoint(Integer logo, String estTime) {
-        this.logo = logo;
+    public FoodJoint(String logo, String estTime) {
+        this.logoURL = logo;
         this.estTime = estTime;
     }
 
     //getters and setters
 
 
-    public Integer getLogo() {
-        return logo;
+    public String getLogo() {
+        return logoURL;
     }
 
-    public void setLogo(Integer logo) {
-        this.logo = logo;
+    public void setLogo(String logo) {
+        this.logoURL = logo;
     }
 
     public String getEstTime() {
