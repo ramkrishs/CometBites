@@ -5,30 +5,35 @@ package edu.utdallas.cometbites.models;
  */
 
 public class FoodJoint {
-    private String logoURL;
-    private String estTime;
+    private int fjid;
+    private String logo;
+    private String wait_time;
 
-    public FoodJoint(String logo, String estTime) {
-        this.logoURL = logo;
-        this.estTime = estTime;
-    }
 
     //getters and setters
 
 
-    public String getLogo() {
-        return logoURL;
+    public void setFjid(int fjid) {
+        this.fjid = fjid;
     }
 
     public void setLogo(String logo) {
-        this.logoURL = logo;
+        this.logo = logo;
     }
 
-    public String getEstTime() {
-        return estTime;
+    public void setWait_time(String wait_time) {
+        this.wait_time = wait_time;
     }
 
-    public void setEstTime(String estTime) {
-        this.estTime = estTime;
+    public int getFjid() {
+        return fjid;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public String getWait_time() {
+        return wait_time;
     }
 }

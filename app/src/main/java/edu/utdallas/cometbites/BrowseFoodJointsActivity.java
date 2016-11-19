@@ -17,7 +17,13 @@ import android.widget.ListView;
 import java.util.LinkedList;
 import java.util.List;
 
+import edu.utdallas.cometbites.Util.Constants;
 import edu.utdallas.cometbites.models.FoodJoint;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BrowseFoodJointsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,15 +45,31 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        final ListView listView = (ListView) findViewById(R.id.foodJointsListView);
+
+        //Retrofit code
+        Retrofit retrofit=new Retrofit.Builder().baseUrl(Constants.BASEURL).addConverterFactory(GsonConverterFactory.create()).build();
+        CometbitesAPI cometbitesAPI=retrofit.create(CometbitesAPI.class);
+        Call<List<FoodJoint>> call=cometbitesAPI.getFoodJointList();
+        call.enqueue(new Callback<List<FoodJoint>>() {
+            @Override
+            public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
+                List<FoodJoint> foodJointsList = response.body();
+                BrowseFoodJointsListAdapter adapter=new BrowseFoodJointsListAdapter(getApplicationContext(),foodJointsList);
+                listView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onFailure(Call<List<FoodJoint>> call, Throwable t) {
+                //TODO add failure code
+
+            }
+        });
 
 
-        final List<FoodJoint> list = restClient.getFoodJointsList();
 
-
-        BrowseFoodJointsListAdapter adapter = new BrowseFoodJointsListAdapter(getApplicationContext(), list);
-
-        ListView listView = (ListView) findViewById(R.id.foodJointsListView);
-        listView.setAdapter(adapter);
+        //final List<FoodJoint> list = restClient.getFoodJointsList();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

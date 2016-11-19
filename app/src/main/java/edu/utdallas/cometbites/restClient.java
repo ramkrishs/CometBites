@@ -1,26 +1,16 @@
 package edu.utdallas.cometbites;
 
-import android.content.Intent;
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.client.HttpClient;
-
-import cz.msebera.android.httpclient.client.methods.HttpGet;
-import cz.msebera.android.httpclient.impl.client.HttpClientBuilder;
 import edu.utdallas.cometbites.models.FoodJoint;
 import edu.utdallas.cometbites.models.Item;
+import retrofit2.Call;
+import retrofit2.http.GET;
 
 /**
  * Created by twinklesharma on 11/15/16.
@@ -107,4 +97,11 @@ public class restClient {
         return jsonArray;
 
     }
+}
+
+interface CometbitesAPI{
+
+    @GET("api/v1/cometbites/foodjoints")
+    Call<List<FoodJoint>> getFoodJointList();
+
 }
