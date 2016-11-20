@@ -8,20 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.util.LinkedList;
-import java.util.List;
-
-import edu.utdallas.cometbites.models.Item;
 
 public class BrowseItemsActivity extends AppCompatActivity {
 
@@ -47,28 +38,28 @@ public class BrowseItemsActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         final String logoURL = bundle.getString("logoURL");
 
+//
+//        final List<Item> itemList = restClient.getItemsList(logoURL);
 
-        final List<Item> itemList = restClient.getItemsList(logoURL);
 
-
-        ListView listView = (ListView) findViewById(R.id.browseItemListView);
-        BrowseItemsAdapter adapter = new BrowseItemsAdapter(itemList, getApplicationContext());
-
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent1 = new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class);
-                Item currItem = itemList.get(i);
-                intent1.putExtra("itemname", currItem.getName());
-                intent1.putExtra("itemprice", currItem.getPrice());
-                intent1.putExtra("itemimageURL", currItem.getImage());
-                intent1.putExtra("itemdesc", currItem.getDescription());
-                intent1.putExtra("logoURL", logoURL);
-                startActivity(intent1);
-            }
-        });
+//        ListView listView = (ListView) findViewById(R.id.browseItemListView);
+//        BrowseItemsAdapter adapter = new BrowseItemsAdapter(itemList, getApplicationContext());
+//
+//        listView.setAdapter(adapter);
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent1 = new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class);
+//                Item currItem = itemList.get(i);
+//                intent1.putExtra("itemname", currItem.getName());
+//                intent1.putExtra("itemprice", currItem.getPrice());
+//                intent1.putExtra("itemimageURL", currItem.getImage());
+//                intent1.putExtra("itemdesc", currItem.getDescription());
+//                intent1.putExtra("logoURL", logoURL);
+//                startActivity(intent1);
+//            }
+//        });
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.

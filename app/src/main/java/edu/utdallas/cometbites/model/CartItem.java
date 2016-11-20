@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites.models;
+package edu.utdallas.cometbites.model;
 
 /**
  * Created by salilkansal on 10/28/16.

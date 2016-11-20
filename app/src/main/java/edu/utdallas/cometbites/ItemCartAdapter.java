@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import edu.utdallas.cometbites.models.CartItem;
+import edu.utdallas.cometbites.model.CartItem;
 
 
 public class ItemCartAdapter extends BaseAdapter {

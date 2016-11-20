@@ -11,7 +11,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.List;
 
-import edu.utdallas.cometbites.models.FoodJoint;
+import edu.utdallas.cometbites.model.FoodJoint;
 
 /**
  * Created by twinklesharma on 10/26/16.
@@ -48,7 +48,7 @@ public class BrowseFoodJointsListAdapter extends BaseAdapter {
         TextView wait_time= (TextView) v.findViewById(R.id.wait_time);
 
         FoodJoint foodJoint = foodJointList.get(i);
-        wait_time.setText(foodJoint.getEstTime());
+        wait_time.setText(foodJoint.getWait_time());
         UrlImageViewHelper.setUrlDrawable(logo, foodJoint.getLogo());
         return v;
     }

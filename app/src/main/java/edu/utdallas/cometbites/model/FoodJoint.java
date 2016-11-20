@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites.models;
+package edu.utdallas.cometbites.model;
 
 /**
  * Created by twinklesharma on 10/26/16.
@@ -35,5 +35,14 @@ public class FoodJoint {
 
     public String getWait_time() {
         return wait_time;
+    }
+
+    @Override
+    public String toString() {
+        return "FoodJoint{" +
+                "fjid=" + fjid +
+                ", logo='" + logo + '\'' +
+                ", wait_time='" + wait_time + '\'' +
+                '}';
     }
 }

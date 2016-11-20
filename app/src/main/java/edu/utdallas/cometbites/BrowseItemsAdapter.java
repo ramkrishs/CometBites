@@ -11,8 +11,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.List;
 
-import edu.utdallas.cometbites.models.FoodJoint;
-import edu.utdallas.cometbites.models.Item;
+import edu.utdallas.cometbites.model.Item;
 
 /**
  * Created by twinklesharma on 10/26/16.
@@ -52,7 +51,7 @@ public class BrowseItemsAdapter extends BaseAdapter {
 
         Item item = itemList.get(i);
         name.setText(item.getName());
-        price.setText(item.getPrice());
+        price.setText(String.valueOf(item.getPrice()));
         UrlImageViewHelper.setUrlDrawable(image, item.getImage());
         return v;
     }

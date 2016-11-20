@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         String email = sharedPrefs.getString("email", null);
         if(email != null){
             String password = sharedPrefs.getString("password", null);
+
             //TODO authenticate with the rest service if the login credentials are valid
             boolean valid = true;
 

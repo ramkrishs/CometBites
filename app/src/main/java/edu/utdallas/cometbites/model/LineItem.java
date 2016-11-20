@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites.models;
+package edu.utdallas.cometbites.model;
 
 public class LineItem {
     private Item item;
@@ -6,7 +6,7 @@ public class LineItem {
 
     public double getTotal() {
         //FIXME review getTotal
-        return Double.parseDouble(item.getPrice()) * quantity;
+        return item.getPrice() * quantity;
     }
 
     public void setQuantity(int quantity) {

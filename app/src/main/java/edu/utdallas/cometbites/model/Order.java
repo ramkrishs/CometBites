@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites.models;
+package edu.utdallas.cometbites.model;
 
 import java.util.Date;
 import java.util.List;

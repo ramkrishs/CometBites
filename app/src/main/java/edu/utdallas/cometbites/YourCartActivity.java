@@ -2,8 +2,6 @@ package edu.utdallas.cometbites;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import edu.utdallas.cometbites.models.CartItem;
+import edu.utdallas.cometbites.model.CartItem;
 
 public class YourCartActivity extends AppCompatActivity {
     private static final String PREFS_NAME="my_cart";

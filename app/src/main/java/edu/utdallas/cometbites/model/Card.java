@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites.models;
+package edu.utdallas.cometbites.model;
 
 public abstract class Card {
     private String cardName;

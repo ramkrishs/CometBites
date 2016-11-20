@@ -2,10 +2,10 @@ package edu.utdallas.cometbites.services;
 
 import java.util.List;
 
-import edu.utdallas.cometbites.models.FoodJoint;
-import edu.utdallas.cometbites.models.Item;
-import edu.utdallas.cometbites.models.Order;
-import edu.utdallas.cometbites.models.Payment;
+import edu.utdallas.cometbites.model.FoodJoint;
+import edu.utdallas.cometbites.model.Item;
+import edu.utdallas.cometbites.model.Order;
+import edu.utdallas.cometbites.model.Payment;
 
 public class DBFacade {
     //private Connection conn;

@@ -1,19 +1,26 @@
-package edu.utdallas.cometbites.models;
+package edu.utdallas.cometbites.model;
 
 /**
  * Created by twinklesharma on 10/26/16.
  */
 
 public class Item {
+    private int id;
     private String image;
     private String name;
-    private String price;
+    private Double price;
     private String description;
-    public Item(String name, String price,String  imageURL, String description) {
-        this.image = imageURL;
+
+    public Item(int id, String image, String name, Double price, String description) {
+        this.id = id;
+        this.image = image;
         this.name = name;
         this.price = price;
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getImage() {
@@ -24,7 +31,7 @@ public class Item {
         return name;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 

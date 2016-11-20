@@ -13,17 +13,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import java.util.LinkedList;
 import java.util.List;
 
-import edu.utdallas.cometbites.Util.Constants;
-import edu.utdallas.cometbites.models.FoodJoint;
+import edu.utdallas.cometbites.util.Constants;
+import edu.utdallas.cometbites.model.FoodJoint;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BrowseFoodJointsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,13 +46,15 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         final ListView listView = (ListView) findViewById(R.id.foodJointsListView);
 
         //Retrofit code
-        Retrofit retrofit=new Retrofit.Builder().baseUrl(Constants.BASEURL).addConverterFactory(GsonConverterFactory.create()).build();
-        CometbitesAPI cometbitesAPI=retrofit.create(CometbitesAPI.class);
+        CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
+
         Call<List<FoodJoint>> call=cometbitesAPI.getFoodJointList();
         call.enqueue(new Callback<List<FoodJoint>>() {
             @Override
             public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
+                //Log.d("BrowserFJActivity", "onResponse: " + response);
                 List<FoodJoint> foodJointsList = response.body();
+                Toast.makeText(BrowseFoodJointsActivity.this, foodJointsList.toString(), Toast.LENGTH_SHORT).show();
                 BrowseFoodJointsListAdapter adapter=new BrowseFoodJointsListAdapter(getApplicationContext(),foodJointsList);
                 listView.setAdapter(adapter);
 
@@ -74,9 +74,11 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(BrowseFoodJointsActivity.this, BrowseItemsActivity.class);
-                intent.putExtra("logoURL", list.get(i).getLogo());
-                startActivity(intent);
+
+                Toast.makeText(BrowseFoodJointsActivity.this, "i: " + i, Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(BrowseFoodJointsActivity.this, BrowseItemsActivity.class);
+//                intent.putExtra("logoURL", list.get(i).getLogo());
+//                startActivity(intent);
             }
         });
 
