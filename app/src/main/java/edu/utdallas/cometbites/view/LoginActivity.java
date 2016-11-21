@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -36,6 +36,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.utdallas.cometbites.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Order {
+    private int orderNumber;
     private double total;
     private Date date;
     private Payment payment;

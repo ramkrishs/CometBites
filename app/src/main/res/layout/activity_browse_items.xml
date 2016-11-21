@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e2ba7d"
-    tools:context="edu.utdallas.cometbites.BrowseItemsActivity">
+    tools:context="edu.utdallas.cometbites.view.BrowseItemsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar_browse_items"

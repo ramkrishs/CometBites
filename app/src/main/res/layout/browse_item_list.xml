@@ -9,6 +9,12 @@
         android:layout_height="100dp"
         />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/item_list_view_id"/>
+
     <TextView
         android:layout_marginTop="20dp"
         android:id="@+id/itemName"
@@ -16,9 +22,11 @@
         android:layout_toRightOf="@+id/itemImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Item Name"
         android:textColor="#808080"/>
 
     <TextView
+        android:text="price"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"

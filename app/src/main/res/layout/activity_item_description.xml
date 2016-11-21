@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFF"
-    tools:context="edu.utdallas.cometbites.ItemDescriptionActivity">
+    tools:context="edu.utdallas.cometbites.view.ItemDescriptionActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar_browse_items"
@@ -34,7 +34,7 @@
             android:layout_height="139dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="11dp"
-            android:src="@drawable/subway_club" />
+            />
 
         <TextView
             android:id="@+id/item_name1"
@@ -43,7 +43,6 @@
             android:layout_below="@+id/item_image1"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
-            android:text="Subway Club"
             android:textColor="@color/textColor"
             android:textSize="25sp" />
 
@@ -53,7 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/item_name1"
             android:layout_marginTop="18dp"
-            android:text="Tender sliced turkey breast, lean roast beef and tasty Black Forest ham come together with your choice of fresh veggies for a low-fat flavor fiesta. Try it today on freshly baked bread and experience all the deliciousity for 6 grams of fat."
             android:textAlignment="center"
             android:textColor="@color/textColor"
             android:textSize="15sp" />
@@ -99,7 +97,6 @@
             android:layout_below="@+id/quantityTextView"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
-            android:text="$6.49"
             android:textColor="@color/textColor"
             android:textSize="20sp"
 

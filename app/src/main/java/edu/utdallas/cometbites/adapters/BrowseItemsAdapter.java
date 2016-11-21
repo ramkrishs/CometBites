@@ -1,9 +1,10 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.adapters;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,8 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.List;
 
+import edu.utdallas.cometbites.R;
+import edu.utdallas.cometbites.model.FoodJoint;
 import edu.utdallas.cometbites.model.Item;
 
 /**
@@ -19,22 +22,22 @@ import edu.utdallas.cometbites.model.Item;
 
 public class BrowseItemsAdapter extends BaseAdapter {
 
-    List<Item> itemList;
+    FoodJoint foodJoint;
     Context mcontext;
 
-    public BrowseItemsAdapter(List<Item> itemList, Context mcontext) {
-        this.itemList = itemList;
+    public BrowseItemsAdapter(FoodJoint foodJoint, Context mcontext) {
+        this.foodJoint = foodJoint;
         this.mcontext = mcontext;
     }
 
     @Override
     public int getCount() {
-        return itemList.size();
+        return foodJoint.getMenu().size();
     }
 
     @Override
     public Object getItem(int i) {
-        return itemList.get(i);
+        return foodJoint.getMenu().get(i);
     }
 
     @Override
@@ -48,8 +51,10 @@ public class BrowseItemsAdapter extends BaseAdapter {
         ImageView image = (ImageView) v.findViewById(R.id.itemImage);
         TextView name = (TextView) v.findViewById(R.id.itemName);
         TextView price = (TextView) v.findViewById(R.id.itemPrice);
+        EditText itemID = (EditText) v.findViewById(R.id.item_list_view_id);
 
-        Item item = itemList.get(i);
+        Item item = foodJoint.getMenu().get(i);
+        itemID.setText(String.valueOf(item.getId()));
         name.setText(item.getName());
         price.setText(String.valueOf(item.getPrice()));
         UrlImageViewHelper.setUrlDrawable(image, item.getImage());

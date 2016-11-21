@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.view;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +16,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import edu.utdallas.cometbites.model.CartItem;
+import edu.utdallas.cometbites.R;
+import edu.utdallas.cometbites.adapters.ItemCartAdapter;
+import edu.utdallas.cometbites.model.LineItem;
 
 public class YourCartActivity extends AppCompatActivity {
     private static final String PREFS_NAME="my_cart";
@@ -44,7 +46,7 @@ public class YourCartActivity extends AppCompatActivity {
         Map<String,String> cart_items_map= (Map<String, String>) myPrefs.getAll();
         Log.d(TAG, "Cart items map: "+cart_items_map);
 
-        List<CartItem> cartItemList = new LinkedList<>();
+        List<LineItem> lineItemList = new LinkedList<>();
 
         for(Map.Entry<String,String> items:cart_items_map.entrySet()){
             String name=items.getKey();
@@ -52,20 +54,20 @@ public class YourCartActivity extends AppCompatActivity {
             String price=items.getValue().split(" ")[1];
 
             String new_price=calculateItemPrice(quantity,price);
-            CartItem cartItem=new CartItem(quantity,name,new_price);
-            cartItemList.add(cartItem);
+            LineItem lineItem =new LineItem(quantity,name,new_price);
+            lineItemList.add(lineItem);
 
         }
 
 
 
-        Log.d(TAG, "onCreate: " + cartItemList);
-        ItemCartAdapter itemCartAdapter = new ItemCartAdapter(cartItemList, getApplicationContext());
+        Log.d(TAG, "onCreate: " + lineItemList);
+        ItemCartAdapter itemCartAdapter = new ItemCartAdapter(lineItemList, getApplicationContext());
         listView.setAdapter(itemCartAdapter);
 
         Log.d(TAG, "onCreate: " + "Successfully set the adapter");
 
-        String subTotal=calculateSubtotal(cartItemList);
+        String subTotal=calculateSubtotal(lineItemList);
         String tax=calculateTax(subTotal);
         String total=calculateTotal(subTotal,tax);
         subtotalView.setText(subTotal);
@@ -117,13 +119,13 @@ public class YourCartActivity extends AppCompatActivity {
 
     }
 
-    private String calculateSubtotal(List<CartItem> list)
+    private String calculateSubtotal(List<LineItem> list)
     {
         Double ip_subtotal=0.0;
 
-            for(CartItem cartItem: list)
+            for(LineItem lineItem : list)
             {
-                ip_subtotal+=Double.parseDouble(cartItem.getPrice().substring(1));
+                ip_subtotal+=Double.parseDouble(lineItem.getPrice().substring(1));
             }
 
         String subtotal=String.format("%.2f",ip_subtotal);

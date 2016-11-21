@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+
+import edu.utdallas.cometbites.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

@@ -1,14 +1,11 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.view;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
+
+import edu.utdallas.cometbites.R;
 
 public class LandingActivity extends Activity {
     final private int DELAY = 3000;

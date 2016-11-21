@@ -1,6 +1,5 @@
 package edu.utdallas.cometbites.util;
 
-import edu.utdallas.cometbites.CometbitesAPI;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

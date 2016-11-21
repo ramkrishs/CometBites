@@ -8,6 +8,7 @@ public class Customer {
     private String lastName;
     private int phoneNumber;
     private List<Payment> payments;
+    //preferred method of payment
 
     public String getFullName() {
         return firstName + lastName;

@@ -1,6 +1,5 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +15,16 @@ import android.widget.Toast;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
+
+import edu.utdallas.cometbites.R;
+import edu.utdallas.cometbites.model.FoodJoint;
+import edu.utdallas.cometbites.model.Item;
+import edu.utdallas.cometbites.util.CometbitesAPI;
+import edu.utdallas.cometbites.util.Constants;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ItemDescriptionActivity extends AppCompatActivity {
 
@@ -36,27 +42,55 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        ImageView itemImage = (ImageView) findViewById(R.id.item_image1);
-        TextView itemNameTextView = (TextView) findViewById(R.id.item_name1);
-        TextView priceTextView = (TextView) findViewById(R.id.item_price);
-        TextView itemDescriptionTextView = (TextView) findViewById(R.id.item_description1);
+        final ImageView itemImage = (ImageView) findViewById(R.id.item_image1);
+        final TextView itemNameTextView = (TextView) findViewById(R.id.item_name1);
+        final TextView priceTextView = (TextView) findViewById(R.id.item_price);
+        final TextView itemDescriptionTextView = (TextView) findViewById(R.id.item_description1);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        String itemName = bundle.getString("itemname");
-        String itemPrice = bundle.getString("itemprice");
-        String itemImageURL = bundle.getString("itemimageURL");
-        String itemDesc = bundle.getString("itemdesc");
+        final String fjid=bundle.getString("fjid");
+        final String itemid=bundle.getString("itemId");
+
+
+        CometbitesAPI cometbitesAPI= Constants.getCometbitesAPI();
+        Call<List<FoodJoint>> call=cometbitesAPI.getFoodJoint(fjid);
+        call.enqueue(new Callback<List<FoodJoint>>() {
+            @Override
+            public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
+                FoodJoint foodJoint=response.body().get(0);
+                Item item = getItem(foodJoint, itemid);
+
+                UrlImageViewHelper.setUrlDrawable(itemImage, item.getImage());
+                itemNameTextView.setText(item.getName());
+                priceTextView.setText(String.valueOf(item.getPrice()));
+                itemDescriptionTextView.setText(item.getDescription());
+
+            }
+
+            private Item getItem(FoodJoint foodJoint, String itemid) {
+                List<Item> itemList=foodJoint.getMenu();
+                for(Item i:itemList){
+                    if(Integer.parseInt(itemid) == i.getId())
+                    {
+                        return i;
+                    }
+                }
+                    return null;
+            }
+
+            @Override
+            public void onFailure(Call<List<FoodJoint>> call, Throwable t) {
+
+            }
+        });
 
         final String logoURL = bundle.getString("logoURL");
 
 
 
-        UrlImageViewHelper.setUrlDrawable(itemImage, itemImageURL);
-        itemNameTextView.setText(itemName);
-        priceTextView.setText(itemPrice);
-        itemDescriptionTextView.setText(itemDesc);
+
 
 
 
@@ -101,6 +135,14 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
                 SharedPreferences myPrefs = getSharedPreferences(PREFS_NAME, 0);
                 SharedPreferences.Editor editor = myPrefs.edit();
+
+                //writing the fjid to a shared pref
+                SharedPreferences jointName = getSharedPreferences("jointName", 0);
+                SharedPreferences.Editor ed = jointName.edit();
+                ed.clear();
+                ed.putString("fjid", fjid);
+                ed.apply();
+
                 Log.d("Item Description", "onClick: " + myPrefs.getAll().toString());
 
 
@@ -124,7 +166,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
                 Log.d("Item Description", "onClick: " + myPrefs.getAll().toString());
                 Toast.makeText(ItemDescriptionActivity.this, item_name + " is successfully added to the cart", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ItemDescriptionActivity.this, BrowseItemsActivity.class);
-                intent.putExtra("logoURL", logoURL);
+                intent.putExtra("fjid", fjid);
                 startActivity(intent);
 
 

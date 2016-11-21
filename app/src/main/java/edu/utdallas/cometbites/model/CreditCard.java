@@ -7,7 +7,8 @@ public class CreditCard extends Card {
     private Date expirationDate;
     private int cvv;
 
-    public CreditCard(int utdID) {
+
+    public CreditCard(int cardNumber, Date expirationDate, int cvv) {
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
         this.cvv = cvv;

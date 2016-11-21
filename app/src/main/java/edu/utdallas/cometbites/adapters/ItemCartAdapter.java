@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -8,14 +8,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import edu.utdallas.cometbites.model.CartItem;
+import edu.utdallas.cometbites.R;
+import edu.utdallas.cometbites.model.LineItem;
 
 
 public class ItemCartAdapter extends BaseAdapter {
-    private List<CartItem> itemsInCart;
+    private List<LineItem> itemsInCart;
     private Context mContext;
 
-    public ItemCartAdapter(List<CartItem> itemsInCart, Context mContext) {
+    public ItemCartAdapter(List<LineItem> itemsInCart, Context mContext) {
         this.itemsInCart = itemsInCart;
         this.mContext = mContext;
     }
@@ -44,10 +45,10 @@ public class ItemCartAdapter extends BaseAdapter {
         TextView itemName = (TextView) v.findViewById(R.id.item_name_cart_textview);
         TextView price = (TextView) v.findViewById(R.id.item_price_cart_textview);
 
-        CartItem cartItem = itemsInCart.get(i);
-        quantity.setText(cartItem.getQuantity());
-        itemName.setText(cartItem.getItem_name());
-        price.setText(cartItem.getPrice());
+        LineItem lineItem = itemsInCart.get(i);
+        quantity.setText(lineItem.getQuantity());
+        itemName.setText(lineItem.getItem_name());
+        price.setText(lineItem.getPrice());
 
         return v;
     }

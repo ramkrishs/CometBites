@@ -1,9 +1,10 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.adapters;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.List;
 
+import edu.utdallas.cometbites.R;
 import edu.utdallas.cometbites.model.FoodJoint;
 
 /**
@@ -46,9 +48,12 @@ public class BrowseFoodJointsListAdapter extends BaseAdapter {
         View v = View.inflate(mContext, R.layout.joints_list_view, null);
         ImageView logo = (ImageView) v.findViewById(R.id.joint_image);
         TextView wait_time= (TextView) v.findViewById(R.id.wait_time);
+        EditText fjid= (EditText) v.findViewById(R.id.fjid);
+
 
         FoodJoint foodJoint = foodJointList.get(i);
-        wait_time.setText(foodJoint.getWait_time());
+        fjid.setText(String.valueOf(foodJoint.getFjID()));
+        wait_time.setText(foodJoint.getWait_time()+" min");
         UrlImageViewHelper.setUrlDrawable(logo, foodJoint.getLogo());
         return v;
     }

@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
+import edu.utdallas.cometbites.R;
+import edu.utdallas.cometbites.adapters.BrowseFoodJointsListAdapter;
+import edu.utdallas.cometbites.util.CometbitesAPI;
 import edu.utdallas.cometbites.util.Constants;
 import edu.utdallas.cometbites.model.FoodJoint;
 import retrofit2.Call;
@@ -45,6 +48,7 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         final ListView listView = (ListView) findViewById(R.id.foodJointsListView);
 
+
         //Retrofit code
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
 
@@ -54,7 +58,6 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
             public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
                 //Log.d("BrowserFJActivity", "onResponse: " + response);
                 List<FoodJoint> foodJointsList = response.body();
-                Toast.makeText(BrowseFoodJointsActivity.this, foodJointsList.toString(), Toast.LENGTH_SHORT).show();
                 BrowseFoodJointsListAdapter adapter=new BrowseFoodJointsListAdapter(getApplicationContext(),foodJointsList);
                 listView.setAdapter(adapter);
 
@@ -68,17 +71,16 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         });
 
 
-
-        //final List<FoodJoint> list = restClient.getFoodJointsList();
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Toast.makeText(BrowseFoodJointsActivity.this, "i: " + i, Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(BrowseFoodJointsActivity.this, BrowseItemsActivity.class);
-//                intent.putExtra("logoURL", list.get(i).getLogo());
-//                startActivity(intent);
+                Intent intent = new Intent(BrowseFoodJointsActivity.this, BrowseItemsActivity.class);
+
+                EditText fjidEditText = ((EditText) view.findViewById(R.id.fjid)) ;
+                String fjid = String.valueOf(fjidEditText.getText());
+                intent.putExtra("fjid", fjid);
+                startActivity(intent);
             }
         });
 

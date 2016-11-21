@@ -1,4 +1,4 @@
-package edu.utdallas.cometbites;
+package edu.utdallas.cometbites.view;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,11 +8,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.List;
+
+import edu.utdallas.cometbites.R;
+import edu.utdallas.cometbites.adapters.BrowseItemsAdapter;
+import edu.utdallas.cometbites.model.FoodJoint;
+import edu.utdallas.cometbites.util.CometbitesAPI;
+import edu.utdallas.cometbites.util.Constants;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BrowseItemsActivity extends AppCompatActivity {
 
@@ -34,32 +50,42 @@ public class BrowseItemsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        final String logoURL = bundle.getString("logoURL");
+        final String fjid = bundle.getString("fjid");
 
-//
-//        final List<Item> itemList = restClient.getItemsList(logoURL);
+        CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
+        Call<List<FoodJoint>> call = cometbitesAPI.getFoodJoint(fjid);
 
+        call.enqueue(new Callback<List<FoodJoint>>() {
+            @Override
+            public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
+                FoodJoint foodJoint = response.body().get(0);
+                ListView listView = (ListView) findViewById(R.id.browseItemListView);
+                BrowseItemsAdapter adapter = new BrowseItemsAdapter(foodJoint, getApplicationContext());
+                listView.setAdapter(adapter);
+            }
 
-//        ListView listView = (ListView) findViewById(R.id.browseItemListView);
-//        BrowseItemsAdapter adapter = new BrowseItemsAdapter(itemList, getApplicationContext());
-//
-//        listView.setAdapter(adapter);
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent1 = new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class);
-//                Item currItem = itemList.get(i);
-//                intent1.putExtra("itemname", currItem.getName());
-//                intent1.putExtra("itemprice", currItem.getPrice());
-//                intent1.putExtra("itemimageURL", currItem.getImage());
-//                intent1.putExtra("itemdesc", currItem.getDescription());
-//                intent1.putExtra("logoURL", logoURL);
-//                startActivity(intent1);
-//            }
-//        });
+            @Override
+            public void onFailure(Call<List<FoodJoint>> call, Throwable t) {
+                Toast.makeText(BrowseItemsActivity.this, "t" + t.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        ListView listView = (ListView) findViewById(R.id.browseItemListView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent1 = new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class);
+                EditText itemIDEditText = (EditText) view.findViewById(R.id.item_list_view_id);
+                String itemid = String.valueOf(itemIDEditText.getText());
+                intent1.putExtra("fjid", fjid);
+                intent1.putExtra("itemId", itemid);
+                startActivity(intent1);
+            }
+        });
 
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.

@@ -8,11 +8,6 @@ import edu.utdallas.cometbites.model.Order;
 import edu.utdallas.cometbites.model.Payment;
 
 public class DBFacade {
-    //private Connection conn;
-
-    public DBFacade() {
-        //getConnection
-    }
 
     public List<FoodJoint> getFoodJoint() {
        return null;
