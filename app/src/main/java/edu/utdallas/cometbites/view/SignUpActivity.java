@@ -1,21 +1,57 @@
 package edu.utdallas.cometbites.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 
 import edu.utdallas.cometbites.R;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    private static final String TAG = "SignupActivity";
+
+    private FirebaseAuth fbAuth;
+    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    private EditText fnameText;
+    private EditText lnameText;
+    private EditText emailText;
+    private EditText phoneText;
+    private EditText passwordText;
+    private EditText confirmPasswordText;
+    Button nextButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        fnameText= (EditText) findViewById(R.id.et_signup_firstnameID);
+        lnameText= (EditText) findViewById(R.id.et_signup_lastnameID);
+        emailText= (EditText) findViewById(R.id.et_signup_emailID);
+        phoneText= (EditText) findViewById(R.id.et_signup_phoneID);
+        passwordText=(EditText) findViewById(R.id.et_signup_passwordID);
+        confirmPasswordText=(EditText) findViewById(R.id.et_signup_confirmPasswordID);
+        nextButton= (Button) findViewById(R.id.next);
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_sign_up_page);
         toolbar.setTitle("Enter Comet Credentials");
@@ -24,18 +60,191 @@ public class SignUpActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-        Button nextButton= (Button) findViewById(R.id.next);
+
+        //First Get Reference
+        fbAuth = FirebaseAuth.getInstance();
+
+        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+
+                    Log.d(TAG, "Signed in: " + user.getUid());
+
+
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "Currently signed out");
+                }
+            }
+        };
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(SignUpActivity.this,PhoneVerifyActivity.class);
-                startActivity(intent);
+                signup();
+
             }
         });
 
+    }
 
+    private void signup() {
+        Log.d(TAG, "Signup");
+
+        if (!validate()) {
+            onSignupFailed();
+            return;
+        }
+
+
+        String email = emailText.getText().toString();
+        String password = passwordText.getText().toString();
+
+        nextButton.setEnabled(false);
+
+        final ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.show();
+
+        // TODO: Implement your own signup logic here.
+        fbAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this,
+                        new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(SignUpActivity.this, "User created", Toast.LENGTH_SHORT)
+                                            .show();
+                                    new android.os.Handler().postDelayed(
+                                            new Runnable() {
+                                                public void run() {
+                                                    // On complete call either onSignupSuccess or onSignupFailed
+                                                    // depending on success
+                                                    onSignupSuccess();
+                                                    // onSignupFailed();
+                                                    progressDialog.dismiss();
+                                                }
+                                            }, 3000);
+                                } else {
+                                    Toast.makeText(SignUpActivity.this, "Account creation failed", Toast.LENGTH_SHORT)
+                                            .show();
+                                    new android.os.Handler().postDelayed(
+                                            new Runnable() {
+                                                public void run() {
+                                                    // On complete call either onSignupSuccess or onSignupFailed
+                                                    // depending on success
+                                                    //onSignupSuccess();
+                                                    onSignupFailed();
+                                                    progressDialog.dismiss();
+                                                }
+                                            }, 3000);
+                                }
+                            }
+                        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, e.toString());
+                        if (e instanceof FirebaseAuthUserCollisionException) {
+                            Toast.makeText(SignUpActivity.this, "This email address is already in use.", Toast.LENGTH_SHORT)
+                                    .show();
+
+
+                        }
+                        else {
+                            Toast.makeText(SignUpActivity.this,e.getLocalizedMessage(), Toast.LENGTH_SHORT)
+                                    .show();
+
+                        }
+                        new android.os.Handler().postDelayed(
+                                new Runnable() {
+                                    public void run() {
+                                        // On complete call either onSignupSuccess or onSignupFailed
+                                        // depending on success
+                                        //onSignupSuccess();
+                                        onSignupFailed();
+                                        progressDialog.dismiss();
+                                    }
+                                }, 3000);
+                    }
+                });
+    }
+
+
+    public void onSignupSuccess() {
+        nextButton.setEnabled(true);
+
+        Intent verify = new Intent(this,PhoneVerifyActivity.class);
+        startActivityForResult(verify, RESULT_OK);
+        setResult(RESULT_OK, verify);
+        finish();
+    }
+
+    public void onSignupFailed() {
+        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+
+        nextButton.setEnabled(true);
+    }
+
+    public boolean validate() {
+        boolean valid = true;
+
+        String fname = fnameText.getText().toString();
+        String lname = lnameText.getText().toString();
+        String email = emailText.getText().toString();
+        String mobile = phoneText.getText().toString();
+        String password = passwordText.getText().toString();
+        String reEnterPassword = confirmPasswordText.getText().toString();
+
+        if (fname.isEmpty() || fname.length() < 3) {
+            fnameText.setError("at least 3 characters");
+            valid = false;
+        } else {
+            fnameText.setError(null);
+        }
+
+        if (lname.isEmpty() || lname.length() < 3) {
+            lnameText.setError("at least 3 characters");
+            valid = false;
+        } else {
+            lnameText.setError(null);
+        }
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailText.setError("enter a valid email address");
+            valid = false;
+        } else {
+            emailText.setError(null);
+        }
+
+        if (mobile.isEmpty() || mobile.length()!=10) {
+            phoneText.setError("Enter Valid Mobile Number");
+            valid = false;
+        } else {
+            phoneText.setError(null);
+        }
+
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            passwordText.setError("between 4 and 10 alphanumeric characters");
+            valid = false;
+        } else {
+            passwordText.setError(null);
+        }
+
+        if (reEnterPassword.isEmpty() || reEnterPassword.length() < 4 || reEnterPassword.length() > 10 || !(reEnterPassword.equals(password))) {
+            confirmPasswordText.setError("Password Do not match");
+            valid = false;
+        } else {
+            confirmPasswordText.setError(null);
+        }
+
+        return valid;
     }
 
     @Override
@@ -46,6 +255,26 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * When the Activity starts and stops, the app needs to connect and
+     * disconnect the AuthListener
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+        // TODO: add the AuthListener
+        fbAuth.addAuthStateListener(firebaseAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        // TODO: Remove the AuthListener
+        if (firebaseAuthListener != null) {
+            fbAuth.removeAuthStateListener(firebaseAuthListener);
+        }
     }
 
 }

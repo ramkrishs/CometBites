@@ -5,7 +5,8 @@
     android:id="@+id/activity_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.utdallas.cometbites.view.SignUpActivity">
+    tools:context="edu.utdallas.cometbites.view.SignUpActivity"
+    >
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar_browse_items"
@@ -22,6 +23,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
     <RelativeLayout
         android:padding="20dp"
         android:layout_width="wrap_content"
@@ -32,7 +38,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/landing_page_image"
@@ -43,11 +49,41 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="200dp"
             android:id="@+id/signup_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="First Name"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:id="@+id/et_signup_firstnameID"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Last Name"
+                    android:inputType="textCapWords"
+                    android:maxLines="1"
+                    android:id="@+id/et_signup_lastnameID"/>
+
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -59,7 +95,7 @@
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:id="@+id/et_signup_emailID"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -74,7 +110,21 @@
                     android:hint="@string/prompt_password"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:id="@+id/et_signup_passwordID"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Confirm Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:id="@+id/et_signup_confirmPasswordID"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -88,7 +138,7 @@
                     android:hint="@string/prompt_phone"
                     android:inputType="phone"
                     android:maxLines="1"
-                    android:singleLine="true" />
+                    android:id="@+id/et_signup_phoneID"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -106,5 +156,8 @@
 
 
     </RelativeLayout>
+
+    </ScrollView>
+
 
 </RelativeLayout>

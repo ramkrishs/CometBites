@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
 
+import com.google.firebase.FirebaseApp;
+
 import edu.utdallas.cometbites.R;
 
 public class LandingActivity extends Activity {
