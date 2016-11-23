@@ -64,7 +64,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
                 UrlImageViewHelper.setUrlDrawable(itemImage, item.getImage());
                 itemNameTextView.setText(item.getName());
-                priceTextView.setText(String.valueOf(item.getPrice()));
+                priceTextView.setText(Constants.UNIT +  String.valueOf(item.getPrice()));
                 itemDescriptionTextView.setText(item.getDescription());
 
             }

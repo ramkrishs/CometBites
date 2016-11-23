@@ -15,6 +15,7 @@ import java.util.List;
 import edu.utdallas.cometbites.R;
 import edu.utdallas.cometbites.model.FoodJoint;
 import edu.utdallas.cometbites.model.Item;
+import edu.utdallas.cometbites.util.Constants;
 
 /**
  * Created by twinklesharma on 10/26/16.
@@ -56,7 +57,7 @@ public class BrowseItemsAdapter extends BaseAdapter {
         Item item = foodJoint.getMenu().get(i);
         itemID.setText(String.valueOf(item.getId()));
         name.setText(item.getName());
-        price.setText(String.valueOf(item.getPrice()));
+        price.setText(Constants.UNIT +  String.valueOf(item.getPrice()));
         UrlImageViewHelper.setUrlDrawable(image, item.getImage());
         return v;
     }

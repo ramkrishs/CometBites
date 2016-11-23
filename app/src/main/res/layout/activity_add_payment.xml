@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.utdallas.cometbites.view.PaymentDetailActivity">
+    tools:context="edu.utdallas.cometbites.view.AddPaymentActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -37,6 +37,22 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Card Name"
+                android:inputType="textCapWords"
+                android:maxLength="16"
+                android:maxLines="1"
+                android:id="@+id/cardname"/>
+
+        </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -48,7 +64,7 @@
                 android:inputType="number"
                 android:maxLength="16"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:id="@+id/cardno"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -63,7 +79,7 @@
                 android:hint="@string/prompt_cvv"
                 android:inputType="numberPassword"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:id="@+id/cvv"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -77,7 +93,8 @@
                 android:hint="@string/prompt_expMonth"
                 android:inputType="number"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:maxLength="2"
+                android:id="@+id/expMonth"/>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -91,7 +108,9 @@
                 android:hint="@string/prompt_expYear"
                 android:inputType="number"
                 android:maxLines="1"
-                android:singleLine="true" />
+                android:id="@+id/expYear"
+                android:maxLength="4"
+                />
 
         </android.support.design.widget.TextInputLayout>
 

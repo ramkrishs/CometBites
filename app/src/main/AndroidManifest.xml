@@ -34,7 +34,7 @@
             android:theme="@style/cometbites_defaulttheme" />
         <activity android:name=".view.SignUpActivity" />
         <activity android:name=".view.PhoneVerifyActivity" />
-        <activity android:name=".view.PaymentDetailActivity" />
+        <activity android:name=".view.AddPaymentActivity" />
         <activity android:name=".view.OrderConfirmationActivity" />
         <activity android:name=".view.EticketActivity" />
         <!--

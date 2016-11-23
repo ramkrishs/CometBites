@@ -2,6 +2,7 @@ package edu.utdallas.cometbites.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,13 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 import edu.utdallas.cometbites.R;
+import edu.utdallas.cometbites.model.Card;
+import edu.utdallas.cometbites.model.Customer;
+import edu.utdallas.cometbites.util.CometbitesAPI;
+import edu.utdallas.cometbites.util.Constants;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -179,11 +187,46 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void onSignupSuccess() {
         nextButton.setEnabled(true);
+        //TODO add retrofit code for adding new user
+
+        String first_name = fnameText.getText().toString();
+        String last_name = lnameText.getText().toString();
+        String emailid = emailText.getText().toString();
+        String phone = phoneText.getText().toString();
+        String password=passwordText.getText().toString();
+        String netid=emailid.substring(0,9);
+
+
+        saveLoginDetails(emailid,password);
+        //Retrofit code
+        CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
+        Call<Integer> customerCall=cometbitesAPI.addCustomer(first_name,last_name,netid,emailid,phone);
+        customerCall.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
+
 
         Intent verify = new Intent(this,PhoneVerifyActivity.class);
         startActivityForResult(verify, RESULT_OK);
         setResult(RESULT_OK, verify);
         finish();
+    }
+
+    private void saveLoginDetails(String email, String password) {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.LOGIN_PREFS, 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("email", email);
+        editor.putString("password", password);
+        editor.apply();
     }
 
     public void onSignupFailed() {

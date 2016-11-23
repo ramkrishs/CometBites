@@ -22,7 +22,7 @@ public class PhoneVerifyActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(PhoneVerifyActivity.this, PaymentDetailActivity.class);
+                Intent i=new Intent(PhoneVerifyActivity.this, AddPaymentActivity.class);
                 startActivity(i);
                 finish();
             }
