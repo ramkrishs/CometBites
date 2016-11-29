@@ -61,7 +61,7 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Toast.makeText(getApplicationContext(), "Signed is as " + user.getEmail(), Toast.LENGTH_SHORT).show();
-
+        String netid=user.getEmail().substring(0,9);
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.currUserID);
         nav_user.setText(user.getEmail());
@@ -70,7 +70,7 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         //Retrofit code
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
 
-        Call<List<FoodJoint>> call=cometbitesAPI.getFoodJointList();
+        Call<List<FoodJoint>> call=cometbitesAPI.getFoodJointList(netid);
         call.enqueue(new Callback<List<FoodJoint>>() {
             @Override
             public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {

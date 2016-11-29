@@ -54,45 +54,40 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         final String itemid=bundle.getString("itemId");
 
 
-        CometbitesAPI cometbitesAPI= Constants.getCometbitesAPI();
-        Call<List<FoodJoint>> call=cometbitesAPI.getFoodJoint(fjid);
-        call.enqueue(new Callback<List<FoodJoint>>() {
-            @Override
-            public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
-                FoodJoint foodJoint=response.body().get(0);
-                Item item = getItem(foodJoint, itemid);
+        final CometbitesAPI cometbitesAPI= Constants.getCometbitesAPI();
 
-                UrlImageViewHelper.setUrlDrawable(itemImage, item.getImage());
+        Call<List<Item>> call=cometbitesAPI.getFoodJoint(fjid);
+        call.enqueue(new Callback<List<Item>>() {
+            @Override
+            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                Item item = response.body().get(Integer.parseInt(itemid) -1);
+                UrlImageViewHelper.setUrlDrawable(itemImage, item.getImage(),R.drawable.image_not_available);
                 itemNameTextView.setText(item.getName());
                 priceTextView.setText(Constants.UNIT +  String.valueOf(item.getPrice()));
                 itemDescriptionTextView.setText(item.getDescription());
 
-            }
+                Call<String> call1=cometbitesAPI.selectItem(item.getId(),item.getName(),item.getDescription(),item.getPrice());
+                call1.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
 
-            private Item getItem(FoodJoint foodJoint, String itemid) {
-                List<Item> itemList=foodJoint.getMenu();
-                for(Item i:itemList){
-                    if(Integer.parseInt(itemid) == i.getId())
-                    {
-                        return i;
                     }
-                }
-                    return null;
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+
+                    }
+                });
+
             }
 
             @Override
-            public void onFailure(Call<List<FoodJoint>> call, Throwable t) {
-
+            public void onFailure(Call<List<Item>> call, Throwable t) {
+                Toast.makeText(ItemDescriptionActivity.this, "Error: "+t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
         final String logoURL = bundle.getString("logoURL");
-
-
-
-
-
-
 
 
         ImageButton minusButton = (ImageButton) findViewById(R.id.minus_button);
@@ -127,43 +122,62 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
                 TextView quantityTextView = (TextView) findViewById(R.id.quantityTextView);
                 String item_quantity = quantityTextView.getText().toString();
-                TextView priceTextView = (TextView) findViewById(R.id.item_price);
-                String item_price = priceTextView.getText().toString();
-                TextView nameTextView = (TextView) findViewById(R.id.item_name1);
-                String item_name = nameTextView.getText().toString();
+
+                String item_price = priceTextView.getText().toString().substring(1);
+
+                String item_name = itemNameTextView.getText().toString();
+                String item_desc=itemDescriptionTextView.getText().toString();
 
 
-                SharedPreferences myPrefs = getSharedPreferences(PREFS_NAME, 0);
-                SharedPreferences.Editor editor = myPrefs.edit();
+                CometbitesAPI cometbitesAPI1=Constants.getCometbitesAPI();
+                Call<String> callsubtotal=cometbitesAPI1.informQuantity(itemid,item_name,item_desc,item_price,item_quantity);
+                callsubtotal.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
 
-                //writing the fjid to a shared pref
-                SharedPreferences jointName = getSharedPreferences("jointName", 0);
-                SharedPreferences.Editor ed = jointName.edit();
-                ed.clear();
-                ed.putString("fjid", fjid);
-                ed.apply();
+                    }
 
-                Log.d("Item Description", "onClick: " + myPrefs.getAll().toString());
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
 
-
-                if (myPrefs.contains(item_name)) {
-                    //add quantity to the previous quantity stored in item_name
-                    String itemInfo = myPrefs.getString(item_name, null);
-                    int stored_quantity = Integer.parseInt(itemInfo.split(" ")[0]);
-
-                    Log.d("Item Description", "onClick: qty" + stored_quantity);
-                    int selected_new_quantity = Integer.parseInt(item_quantity);
-                    selected_new_quantity += stored_quantity;
-                    item_quantity = String.valueOf(selected_new_quantity);
-                }
+                    }
+                });
 
 
-                String itemInfo = item_quantity + " " + item_price;
 
 
-                editor.putString(item_name, itemInfo);
-                editor.apply();
-                Log.d("Item Description", "onClick: " + myPrefs.getAll().toString());
+
+//                SharedPreferences myPrefs = getSharedPreferences(PREFS_NAME, 0);
+//                SharedPreferences.Editor editor = myPrefs.edit();
+//
+//                //writing the fjid to a shared pref
+//                SharedPreferences jointName = getSharedPreferences("jointName", 0);
+//                SharedPreferences.Editor ed = jointName.edit();
+//                ed.clear();
+//                ed.putString("fjid", fjid);
+//                ed.apply();
+//
+//                Log.d("Item Description", "onClick: " + myPrefs.getAll().toString());
+//
+//
+//                if (myPrefs.contains(item_name)) {
+//                    //add quantity to the previous quantity stored in item_name
+//                    String itemInfo = myPrefs.getString(item_name, null);
+//                    int stored_quantity = Integer.parseInt(itemInfo.split(" ")[0]);
+//
+//                    Log.d("Item Description", "onClick: qty" + stored_quantity);
+//                    int selected_new_quantity = Integer.parseInt(item_quantity);
+//                    selected_new_quantity += stored_quantity;
+//                    item_quantity = String.valueOf(selected_new_quantity);
+//                }
+//
+//
+//                String itemInfo = item_quantity + " " + item_price;
+//
+//
+//                editor.putString(item_name, itemInfo);
+//                editor.apply();
+//                Log.d("Item Description", "onClick: " + myPrefs.getAll().toString());
                 Toast.makeText(ItemDescriptionActivity.this, item_name + " is successfully added to the cart", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ItemDescriptionActivity.this, BrowseItemsActivity.class);
                 intent.putExtra("fjid", fjid);

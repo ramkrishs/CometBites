@@ -25,6 +25,7 @@ public class BrowseItemsAdapter extends BaseAdapter {
 
     FoodJoint foodJoint;
     Context mcontext;
+    Item item;
 
     public BrowseItemsAdapter(FoodJoint foodJoint, Context mcontext) {
         this.foodJoint = foodJoint;
@@ -58,7 +59,7 @@ public class BrowseItemsAdapter extends BaseAdapter {
         itemID.setText(String.valueOf(item.getId()));
         name.setText(item.getName());
         price.setText(Constants.UNIT +  String.valueOf(item.getPrice()));
-        UrlImageViewHelper.setUrlDrawable(image, item.getImage());
+        UrlImageViewHelper.setUrlDrawable(image,item.getImage(),R.drawable.image_not_available);
         return v;
     }
 }

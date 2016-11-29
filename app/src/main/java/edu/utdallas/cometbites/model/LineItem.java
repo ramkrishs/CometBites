@@ -1,30 +1,48 @@
 package edu.utdallas.cometbites.model;
 
 /**
- * Created by salilkansal on 10/28/16.
+ * Created by twinkle sharma on 10/28/16.
  */
 
 public class LineItem {
+    private int quantity;
+    private Item item;
 
-    private String quantity;
-    private String item_name;
-    private String price;
-
-    public LineItem(String quantity, String item_name, String price) {
-        this.quantity = quantity;
-        this.item_name = item_name;
-        this.price = price;
+    public LineItem() {
     }
 
-    public String getQuantity() {
+    public LineItem(Item item) {
+        this.item = item;
+    }
+
+    public LineItem(int quantity, Item item) {
+        this.quantity = quantity;
+        this.item = item;
+    }
+
+    public String getId() {
+        return item.getId();
+    }
+
+    public int getQuantity() {
         return quantity;
     }
 
-    public String getItem_name() {
-        return item_name;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public String getPrice() {
-        return price;
+    public Item getItem() {
+        return item;
     }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public double getTotal() {
+        return quantity * Double.parseDouble(item.getPrice());
+    }
+
 }
+

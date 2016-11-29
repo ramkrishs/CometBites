@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,8 +31,8 @@ public class AddPaymentActivity extends AppCompatActivity {
     private EditText expMonthView;
     private EditText expYearView;
     private Button finishButton;
-    private String cardName;
-    private String cardNo;
+    private String cardname;
+    private String cardno;
     private String cvv;
     private String expMonth;
     private String expYear;
@@ -41,6 +42,12 @@ public class AddPaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_payment);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_sign_up_page);
+        toolbar.setTitle("Enter Card Credentials");
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
@@ -83,7 +90,7 @@ public class AddPaymentActivity extends AppCompatActivity {
 
         //Retrofit code
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
-        Call<ResponseBody> call = cometbitesAPI.addCard(netid, cardName, cardNo, cvv, expDate);
+        Call<ResponseBody> call = cometbitesAPI.addCard(netid, cardname, cardno, cvv, expDate);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -120,14 +127,14 @@ public class AddPaymentActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        cardName = cardNameView.getText().toString();
-        cardNo = cardNumberView.getText().toString();
+        cardname = cardNameView.getText().toString();
+        cardno = cardNumberView.getText().toString();
         cvv = cvvView.getText().toString();
         expMonth = expMonthView.getText().toString();
         expYear = expYearView.getText().toString();
 
 
-        if (cardNo.isEmpty() || cardNo.length() > 19 || cardNo.length() < 10) {
+        if (cardno.isEmpty() || cardno.length() > 19 || cardno.length() < 10) {
             cardNameView.setError("should be between 10 to 19 digit number");
             valid = false;
         } else {

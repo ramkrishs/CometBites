@@ -24,6 +24,7 @@ import java.util.List;
 import edu.utdallas.cometbites.R;
 import edu.utdallas.cometbites.adapters.BrowseItemsAdapter;
 import edu.utdallas.cometbites.model.FoodJoint;
+import edu.utdallas.cometbites.model.Item;
 import edu.utdallas.cometbites.util.CometbitesAPI;
 import edu.utdallas.cometbites.util.Constants;
 import retrofit2.Call;
@@ -55,19 +56,20 @@ public class BrowseItemsActivity extends AppCompatActivity {
         final String fjid = bundle.getString("fjid");
 
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
-        Call<List<FoodJoint>> call = cometbitesAPI.getFoodJoint(fjid);
+        Call<List<Item>> call = cometbitesAPI.getFoodJoint(fjid);
 
-        call.enqueue(new Callback<List<FoodJoint>>() {
+        call.enqueue(new Callback<List<Item>>() {
             @Override
-            public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
-                FoodJoint foodJoint = response.body().get(0);
+            public void onResponse(Call<List<Item>> call, Response<List<Item>> response) {
+                FoodJoint foodJoint=new FoodJoint();
+                foodJoint.setMenu(response.body());
                 ListView listView = (ListView) findViewById(R.id.browseItemListView);
                 BrowseItemsAdapter adapter = new BrowseItemsAdapter(foodJoint, getApplicationContext());
                 listView.setAdapter(adapter);
             }
 
             @Override
-            public void onFailure(Call<List<FoodJoint>> call, Throwable t) {
+            public void onFailure(Call<List<Item>> call, Throwable t) {
                 Toast.makeText(BrowseItemsActivity.this, "t" + t.toString(), Toast.LENGTH_SHORT).show();
 
             }
@@ -80,10 +82,12 @@ public class BrowseItemsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent1 = new Intent(BrowseItemsActivity.this, ItemDescriptionActivity.class);
                 EditText itemIDEditText = (EditText) view.findViewById(R.id.item_list_view_id);
-                String itemid = String.valueOf(itemIDEditText.getText());
-                intent1.putExtra("fjid", fjid);
+
+               String itemid = String.valueOf(itemIDEditText.getText());
+               intent1.putExtra("fjid", fjid);
                 intent1.putExtra("itemId", itemid);
-                startActivity(intent1);
+
+               startActivity(intent1);
             }
         });
 

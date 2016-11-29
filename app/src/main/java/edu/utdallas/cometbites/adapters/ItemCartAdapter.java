@@ -46,9 +46,9 @@ public class ItemCartAdapter extends BaseAdapter {
         TextView price = (TextView) v.findViewById(R.id.item_price_cart_textview);
 
         LineItem lineItem = itemsInCart.get(i);
-        quantity.setText(lineItem.getQuantity());
-        itemName.setText(lineItem.getItem_name());
-        price.setText(lineItem.getPrice());
+        quantity.setText(String.valueOf(lineItem.getQuantity()));
+        itemName.setText(lineItem.getItem().getName());
+        price.setText(lineItem.getItem().getPrice());
 
         return v;
     }

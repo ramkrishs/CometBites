@@ -19,19 +19,31 @@ import java.util.Map;
 import edu.utdallas.cometbites.R;
 import edu.utdallas.cometbites.adapters.ItemCartAdapter;
 import edu.utdallas.cometbites.model.LineItem;
+import edu.utdallas.cometbites.util.CometbitesAPI;
+import edu.utdallas.cometbites.util.Constants;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class YourCartActivity extends AppCompatActivity {
     private static final String PREFS_NAME="my_cart";
+    private ListView listView;
+    private TextView subtotalView;
+    private TextView taxView;
+    private TextView totalView;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final String TAG = "CartActivity";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_your_cart);
 
-        ListView listView = (ListView) findViewById(R.id.items_in_cart_list_view);
-        TextView subtotalView= (TextView) findViewById(R.id.subTotalValue);
-        TextView taxView= (TextView) findViewById(R.id.taxValue);
-        TextView totalView= (TextView) findViewById(R.id.totalValue);
+        listView = (ListView) findViewById(R.id.items_in_cart_list_view);
+        subtotalView= (TextView) findViewById(R.id.subTotalValue);
+        taxView= (TextView) findViewById(R.id.taxValue);
+        totalView= (TextView) findViewById(R.id.totalValue);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_cart_page);
@@ -42,38 +54,35 @@ public class YourCartActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        SharedPreferences myPrefs = getSharedPreferences(PREFS_NAME, 0);
-        Map<String,String> cart_items_map= (Map<String, String>) myPrefs.getAll();
-        Log.d(TAG, "Cart items map: "+cart_items_map);
-
-        List<LineItem> lineItemList = new LinkedList<>();
-
-        for(Map.Entry<String,String> items:cart_items_map.entrySet()){
-            String name=items.getKey();
-            String quantity=items.getValue().split(" ")[0];
-            String price=items.getValue().split(" ")[1];
-
-            String new_price=calculateItemPrice(quantity,price);
-            LineItem lineItem =new LineItem(quantity,name,new_price);
-            lineItemList.add(lineItem);
-
-        }
+        CometbitesAPI cometbitesAPI= Constants.getCometbitesAPI();
+        Call<List<LineItem>> callLineItemList=cometbitesAPI.viewOrder();
 
 
 
-        Log.d(TAG, "onCreate: " + lineItemList);
-        ItemCartAdapter itemCartAdapter = new ItemCartAdapter(lineItemList, getApplicationContext());
-        listView.setAdapter(itemCartAdapter);
+        callLineItemList.enqueue(new Callback<List<LineItem>>() {
+            @Override
+            public void onResponse(Call<List<LineItem>> call, Response<List<LineItem>> response) {
+                List<LineItem> lineItemList =response.body();
 
-        Log.d(TAG, "onCreate: " + "Successfully set the adapter");
+                Log.d(TAG, "onCreate: " + lineItemList);
+                ItemCartAdapter itemCartAdapter = new ItemCartAdapter(lineItemList, getApplicationContext());
+                listView.setAdapter(itemCartAdapter);
 
-        String subTotal=calculateSubtotal(lineItemList);
-        String tax=calculateTax(subTotal);
-        String total=calculateTotal(subTotal,tax);
-        subtotalView.setText(subTotal);
-        taxView.setText(tax);
-        totalView.setText(total);
+                Log.d(TAG, "onCreate: " + "Successfully set the adapter");
+                String subTotal=calculateSubtotal(lineItemList);
+                String tax=calculateTax(subTotal);
+                String total=calculateTotal(subTotal,tax);
+                subtotalView.setText("$ "+subTotal);
+                taxView.setText("$ "+tax);
+                totalView.setText("$ "+total);
 
+            }
+
+            @Override
+            public void onFailure(Call<List<LineItem>> call, Throwable t) {
+
+            }
+        });
 
         TextView cancelButton= (TextView) findViewById(R.id.cancelOrderButton);
         cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -108,48 +117,36 @@ public class YourCartActivity extends AppCompatActivity {
     }
 
 
-    private String calculateItemPrice(String ip_quantity, String ip_price)
-    {
-        int qty=Integer.parseInt(ip_quantity);
-        ip_price=ip_price.substring(1);
-        double price=Double.parseDouble(ip_price);
-
-        String item_price=String.format("%.2f", qty*price);
-        return "$ "+item_price;
-
-    }
-
     private String calculateSubtotal(List<LineItem> list)
     {
         Double ip_subtotal=0.0;
 
             for(LineItem lineItem : list)
             {
-                ip_subtotal+=Double.parseDouble(lineItem.getPrice().substring(1));
+                ip_subtotal+=lineItem.getTotal();
             }
 
         String subtotal=String.format("%.2f",ip_subtotal);
-        return "$ "+subtotal;
+        return subtotal;
     }
 
     private String calculateTax(String ip_subtotal)
     {
-        ip_subtotal=ip_subtotal.substring(1);
+
         double subtotal=Double.parseDouble(ip_subtotal);
 
         String tax=String.format("%.2f",0.0825*subtotal);
-        return "$ "+tax;
+        return tax;
 
     }
 
     private String calculateTotal(String ip_subtotal, String ip_tax)
     {
-        ip_subtotal=ip_subtotal.substring(1);
-        ip_tax=ip_tax.substring(1);
+
         double subtotal=Double.parseDouble(ip_subtotal);
         double tax=Double.parseDouble(ip_tax);
 
         String total=String.format("%.2f",subtotal+tax);
-        return "$ "+total;
+        return total;
     }
 }

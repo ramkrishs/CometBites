@@ -53,7 +53,7 @@ public class BrowseFoodJointsListAdapter extends BaseAdapter {
 
         FoodJoint foodJoint = foodJointList.get(i);
         fjid.setText(String.valueOf(foodJoint.getFjID()));
-        wait_time.setText(foodJoint.getWait_time()+" min");
+        wait_time.setText(foodJoint.getWaitTime()+" min");
         UrlImageViewHelper.setUrlDrawable(logo, foodJoint.getLogo());
         return v;
     }

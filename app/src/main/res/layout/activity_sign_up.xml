@@ -5,8 +5,7 @@
     android:id="@+id/activity_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.utdallas.cometbites.view.SignUpActivity"
-    >
+    tools:context="edu.utdallas.cometbites.view.SignUpActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar_browse_items"
@@ -40,7 +39,7 @@
             <ImageView
                 android:layout_marginTop="40dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:src="@drawable/landing_page_image"
                 android:id="@+id/imageView2"
                 android:layout_alignParentTop="true"
@@ -49,7 +48,7 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="210dp"
             android:id="@+id/signup_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
