@@ -36,7 +36,7 @@ import retrofit2.Response;
 public class BrowseFoodJointsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
     @Override
@@ -56,21 +56,31 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
         final ListView listView = (ListView) findViewById(R.id.foodJointsListView);
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         Toast.makeText(getApplicationContext(), "Signed is as " + user.getEmail(), Toast.LENGTH_SHORT).show();
         String netid=user.getEmail().substring(0,9);
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.currUserID);
         nav_user.setText(user.getEmail());
 
+        nav_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO clicking on profile link will take here
+                Toast.makeText(getApplicationContext(), "Profile activity will go here", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         //Retrofit code
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
 
-        Call<List<FoodJoint>> call=cometbitesAPI.getFoodJointList(netid);
+        Call<List<FoodJoint>> call=cometbitesAPI.getFoodJointList(user.getUid(),netid);
         call.enqueue(new Callback<List<FoodJoint>>() {
             @Override
             public void onResponse(Call<List<FoodJoint>> call, Response<List<FoodJoint>> response) {
@@ -139,22 +149,19 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_orders) {
+            Intent i=new Intent(BrowseFoodJointsActivity.this,OrdersActivity.class);
+            startActivity(i);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_payment) {
+            //TODO
+            Toast.makeText(this, "Payment activity will go here", Toast.LENGTH_SHORT).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

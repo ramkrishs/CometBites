@@ -8,11 +8,16 @@ import edu.utdallas.cometbites.model.Customer;
 import edu.utdallas.cometbites.model.FoodJoint;
 import edu.utdallas.cometbites.model.Item;
 import edu.utdallas.cometbites.model.LineItem;
+import edu.utdallas.cometbites.model.Order;
+import edu.utdallas.cometbites.model.PaymentOptions;
+import edu.utdallas.cometbites.model.Ticket;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -22,11 +27,18 @@ import retrofit2.http.Path;
  */
 
 public interface CometbitesAPI{
+    @GET("auth/{netid}/send_token")
+    Call<ResponseBody> sendToken(@Path("netid") String netid);
+
+    @FormUrlEncoded
+    @POST("auth/{netid}/verify_phone")
+    Call<ResponseBody> verifyPhone(@Path("netid") String netid, @Field("code") String code);
 
     @GET("register/{netid}")
-    Call<List<FoodJoint>> getFoodJointList(@Path("netid") String netid);
+    Call<List<FoodJoint>> getFoodJointList(@Header("UID") String UID,  @Path("netid") String netid);
 
-    @GET("register/foodJoint/{fjid}")
+
+    @GET("register/foodjoint/{fjid}")
     Call<List<Item>> getFoodJoint(@Path("fjid") String fjid);
 
     @FormUrlEncoded
@@ -39,14 +51,28 @@ public interface CometbitesAPI{
 
 
     @FormUrlEncoded
-    @PUT("register/item/{itemid}")
-    Call<String> selectItem(@Path("itemid") String itemid, @Field("name") String itemName, @Field("description") String desc, @Field("price") String price);
+    @POST("register/select/{itemid}")
+    Call<String> selectItem(@Header("UID") String UID,@Path("itemid") String itemid, @Field("name") String itemName, @Field("description") String desc, @Field("price") String price, @Field("fjID") String fjID);
 
     @FormUrlEncoded
-    @POST("register/item/{itemid}")
-    Call<String> informQuantity(@Path("itemid") String itemid, @Field("name") String itemName, @Field("description") String desc, @Field("price") String price, @Field("quantity") String quantity);
-
+    @POST("register/addquantity/{itemid}")
+    Call<String> informQuantity(@Header("UID") String UID,@Path("itemid") String itemid, @Field("name") String itemName, @Field("description") String desc, @Field("price") String price, @Field("quantity") String quantity);
 
     @GET("register/order")
-    Call<List<LineItem>> viewOrder();
+    Call<List<LineItem>> viewOrder(@Header("UID") String UID);
+
+    @GET("register/checkout")
+    Call<List<PaymentOptions>> checkOut(@Header("UID") String UID);
+
+    @FormUrlEncoded
+    @POST("register/order/payment")
+    Call<Ticket> placeOrder(@Header("UID") String UID,@Field("cardname") String cardname,@Field("cardno") String cardno, @Field("cvv") String cvv, @Field("expdate") String expdate);
+
+    @FormUrlEncoded
+    @POST("register/order/eticket")
+    Call<Ticket> getETicket(@Header("UID") String UID);
+
+    @GET("orders/user/{netid}")
+    Call<List<Order>> getOrderByNetid(@Path("netid") String netid);
+
 }

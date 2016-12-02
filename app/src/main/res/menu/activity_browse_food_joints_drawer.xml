@@ -3,25 +3,12 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_orders"
             android:title="Orders" />
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Payment" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:title="Request Status" />
-    </group>
+        android:id="@+id/nav_payment"
+        android:title="Payment" />
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:title="Contact Us" />
-        </menu>
-    </item>
+    </group>
 
 </menu>

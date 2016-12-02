@@ -108,7 +108,6 @@ public class AddPaymentActivity extends AppCompatActivity {
 
     }
 
-
     public void onAddPaymentSuccess() {
         finishButton.setEnabled(true);
         setResult(RESULT_OK, null);
@@ -163,6 +162,13 @@ public class AddPaymentActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(AddPaymentActivity.this, PhoneVerifyActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

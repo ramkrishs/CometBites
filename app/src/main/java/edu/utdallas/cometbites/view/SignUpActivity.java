@@ -27,6 +27,7 @@ import edu.utdallas.cometbites.model.Card;
 import edu.utdallas.cometbites.model.Customer;
 import edu.utdallas.cometbites.util.CometbitesAPI;
 import edu.utdallas.cometbites.util.Constants;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -213,6 +214,21 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
+//code to send rest for code
+        CometbitesAPI cometbitesAPI1=Constants.getCometbitesAPI();
+        Call<ResponseBody> call=cometbitesAPI1.sendToken(netid);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Toast.makeText(SignUpActivity.this, call.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(SignUpActivity.this, "Exception: "+t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         Intent verify = new Intent(this,PhoneVerifyActivity.class);
         startActivityForResult(verify, RESULT_OK);
@@ -320,4 +336,10 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

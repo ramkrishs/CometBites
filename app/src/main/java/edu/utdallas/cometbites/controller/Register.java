@@ -33,7 +33,7 @@ public class Register {
     }
 
     public List<LineItem> viewOrder() {
-        return order.getItems();
+        return null;
     }
 
     public List<Payment> checkOut() {

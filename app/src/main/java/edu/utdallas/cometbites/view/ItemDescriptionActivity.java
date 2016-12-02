@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 
 import java.util.List;
@@ -29,6 +31,7 @@ import retrofit2.Response;
 public class ItemDescriptionActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "my_cart";
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,6 @@ public class ItemDescriptionActivity extends AppCompatActivity {
         final String fjid=bundle.getString("fjid");
         final String itemid=bundle.getString("itemId");
 
-
         final CometbitesAPI cometbitesAPI= Constants.getCometbitesAPI();
 
         Call<List<Item>> call=cometbitesAPI.getFoodJoint(fjid);
@@ -66,7 +68,9 @@ public class ItemDescriptionActivity extends AppCompatActivity {
                 priceTextView.setText(Constants.UNIT +  String.valueOf(item.getPrice()));
                 itemDescriptionTextView.setText(item.getDescription());
 
-                Call<String> call1=cometbitesAPI.selectItem(item.getId(),item.getName(),item.getDescription(),item.getPrice());
+
+
+                Call<String> call1=cometbitesAPI.selectItem(user.getUid(),item.getId(),item.getName(),item.getDescription(),item.getPrice(),fjid);
                 call1.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
@@ -128,20 +132,22 @@ public class ItemDescriptionActivity extends AppCompatActivity {
                 String item_name = itemNameTextView.getText().toString();
                 String item_desc=itemDescriptionTextView.getText().toString();
 
+                if(!item_quantity.equals("0")){
+                    CometbitesAPI cometbitesAPI1=Constants.getCometbitesAPI();
+                    Call<String> callsubtotal=cometbitesAPI1.informQuantity(user.getUid(),itemid,item_name,item_desc,item_price,item_quantity);
+                    callsubtotal.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
 
-                CometbitesAPI cometbitesAPI1=Constants.getCometbitesAPI();
-                Call<String> callsubtotal=cometbitesAPI1.informQuantity(itemid,item_name,item_desc,item_price,item_quantity);
-                callsubtotal.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
+                        }
 
-                    }
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
 
-                    @Override
-                    public void onFailure(Call<String> call, Throwable t) {
+                        }
+                    });
+                }
 
-                    }
-                });
 
 
 

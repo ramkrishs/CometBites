@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_eticket"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerHorizontal="true"
     tools:context="edu.utdallas.cometbites.view.EticketActivity">
-
 
 
     <android.support.design.widget.AppBarLayout
@@ -16,17 +15,18 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_eticket_page"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_eticket_page"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
     </android.support.design.widget.AppBarLayout>
+
     <RelativeLayout
-        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp">
 
 
         <RelativeLayout
@@ -42,8 +42,26 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:text="Your E-Ticket \n Invoice number: 1233212967"
+                android:text="Your E-Ticket"
                 android:textSize="20sp" />
+            <TextView
+                android:id="@+id/invoice_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_below="@+id/heading_e_ticket"
+                android:text="Invoice number:"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/invoice_number"
+                android:textSize="20sp"
+                android:layout_marginTop="25dp"/>
 
 
             <ImageView
@@ -75,23 +93,8 @@
                     android:layout_gravity="right"
                     android:padding="3dip"
                     android:text="4-8 minutes"
-
-                    android:textSize="20dp" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:layout_gravity="left"
-                    android:padding="3dip"
-                    android:text="Orders before you"
-                    android:textSize="20dp" />
-
-                <TextView
-                    android:layout_gravity="right"
-                    android:padding="3dip"
-                    android:text="18"
-                    android:textSize="20dp" />
+                    android:textSize="20dp"
+                    android:id="@+id/fj_wait_time"/>
             </TableRow>
 
         </TableLayout>
@@ -101,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/table_layout_eticket"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="50dp">
 
             <TextView
 

@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import edu.utdallas.cometbites.R;
 
 public class EticketActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "my_cart";
+    private TextView codeView;
+    private TextView waitTimeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,8 @@ public class EticketActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
+        codeView= (TextView) findViewById(R.id.code);
+        waitTimeView= (TextView) findViewById(R.id.fj_wait_time);
         SharedPreferences myPrefs= getSharedPreferences(PREFS_NAME,0);
         SharedPreferences.Editor editor = myPrefs.edit();
         editor.clear();
@@ -37,6 +41,10 @@ public class EticketActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         boolean paid = bundle.getBoolean("paid");
+        String code=bundle.getString("code");
+        String wait_time=bundle.getString("waitTime");
+        codeView.setText(code);
+        waitTimeView.setText(wait_time+" min");
 
         if (!paid) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);

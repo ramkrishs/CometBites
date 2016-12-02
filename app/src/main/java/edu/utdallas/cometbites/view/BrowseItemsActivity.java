@@ -31,6 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static edu.utdallas.cometbites.R.id.fjid;
+
 public class BrowseItemsActivity extends AppCompatActivity {
 
     /**
@@ -38,6 +40,7 @@ public class BrowseItemsActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,10 +112,15 @@ public class BrowseItemsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
+        final Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final String fjid = bundle.getString("fjid");
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         } else if (item.getItemId() == R.id.action_bar_cart) {
+
             Intent i = new Intent(BrowseItemsActivity.this, YourCartActivity.class);
+            i.putExtra("fjid", fjid);
             startActivity(i);
         }
 
