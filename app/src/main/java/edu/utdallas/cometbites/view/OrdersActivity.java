@@ -1,14 +1,11 @@
 package edu.utdallas.cometbites.view;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,7 +41,7 @@ public class OrdersActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String netid=user.getEmail().substring(0,9);
         CometbitesAPI cometbitesAPI= Constants.getCometbitesAPI();
-        Call<List<Order>> call=cometbitesAPI.getOrderByNetid(netid);
+        Call<List<Order>> call=cometbitesAPI.getOrdersForUser(netid);
         call.enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {

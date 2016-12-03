@@ -121,7 +121,7 @@ public class PhoneVerifyActivity extends AppCompatActivity {
         String netid=user.getEmail().substring(0,9);
 
         CometbitesAPI cometbitesAPI= Constants.getCometbitesAPI();
-        Call<ResponseBody> call=cometbitesAPI.verifyPhone(netid,code);
+        Call<ResponseBody> call=cometbitesAPI.verifyPhoneByCode(netid,code);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

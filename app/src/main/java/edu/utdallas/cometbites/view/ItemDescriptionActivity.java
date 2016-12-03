@@ -1,11 +1,9 @@
 package edu.utdallas.cometbites.view;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,7 +18,6 @@ import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
 import java.util.List;
 
 import edu.utdallas.cometbites.R;
-import edu.utdallas.cometbites.model.FoodJoint;
 import edu.utdallas.cometbites.model.Item;
 import edu.utdallas.cometbites.util.CometbitesAPI;
 import edu.utdallas.cometbites.util.Constants;
@@ -119,7 +116,7 @@ public class ItemDescriptionActivity extends AppCompatActivity {
 
                 if (!item_quantity.equals("0")) {
                     CometbitesAPI cometbitesAPI1 = Constants.getCometbitesAPI();
-                    Call<String> callsubtotal = cometbitesAPI1.informQuantity(user.getUid(), itemid, item_name, item_desc, item_price, item_quantity, fjid);
+                    Call<String> callsubtotal = cometbitesAPI1.addItemToCart(user.getUid(), itemid, item_name, item_desc, item_price, item_quantity, fjid);
                     callsubtotal.enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {

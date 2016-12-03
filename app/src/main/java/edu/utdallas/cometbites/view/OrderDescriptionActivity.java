@@ -67,10 +67,6 @@ public class OrderDescriptionActivity extends AppCompatActivity {
 
                     OrderDescriptionAdapter orderDescriptionAdapter = new OrderDescriptionAdapter(order, getBaseContext());
                     listView.setAdapter(orderDescriptionAdapter);
-
-
-
-
                 }
 
                 @Override
@@ -78,13 +74,5 @@ public class OrderDescriptionActivity extends AppCompatActivity {
                     Toast.makeText(OrderDescriptionActivity.this, "Error: " + t, Toast.LENGTH_SHORT).show();
                 }
             });
-
-
-
-        Toast.makeText(this, order.toString(), Toast.LENGTH_SHORT).show();
-
-
-
-
     }
 }

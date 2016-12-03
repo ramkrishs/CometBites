@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -42,7 +41,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
-        Call<List<PaymentOptions>> call = cometbitesAPI.checkOut(user.getUid());
+        Call<List<PaymentOptions>> call = cometbitesAPI.getPaymentOptionsWhileCheckout(user.getUid());
         final Spinner spinner = (Spinner) findViewById(R.id.cards_spinner);
 
         call.enqueue(new Callback<List<PaymentOptions>>() {
@@ -120,7 +119,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
     private void placeOrder(PaymentOptions selectedPayment) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         CometbitesAPI cometbitesAPI =Constants.getCometbitesAPI();
-        Call<Ticket> call=cometbitesAPI.placeOrder(user.getUid(),selectedPayment.getCardname(),selectedPayment.getCardno(),selectedPayment.getCvv(),selectedPayment.getExpdate());
+        Call<Ticket> call=cometbitesAPI.placeOrderWithCardDetails(user.getUid(),selectedPayment.getCardname(),selectedPayment.getCardno(),selectedPayment.getCvv(),selectedPayment.getExpdate());
         call.enqueue(new Callback<Ticket>() {
             @Override
             public void onResponse(Call<Ticket> call, Response<Ticket> response) {

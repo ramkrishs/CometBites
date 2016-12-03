@@ -2,7 +2,6 @@ package edu.utdallas.cometbites.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -93,7 +92,7 @@ public class AddPaymentActivity extends AppCompatActivity {
 
         //Retrofit code
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
-        Call<ResponseBody> call = cometbitesAPI.addCard(netid, cardname, cardno, cvv, expDate);
+        Call<ResponseBody> call = cometbitesAPI.addPaymentMethod(netid, cardname, cardno, cvv, expDate);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

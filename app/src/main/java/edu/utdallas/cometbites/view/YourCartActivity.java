@@ -1,7 +1,6 @@
 package edu.utdallas.cometbites.view;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import edu.utdallas.cometbites.R;
 import edu.utdallas.cometbites.adapters.ItemCartAdapter;
@@ -68,7 +66,7 @@ public class YourCartActivity extends AppCompatActivity {
 
 
         CometbitesAPI cometbitesAPI = Constants.getCometbitesAPI();
-        Call<List<LineItem>> callLineItemList = cometbitesAPI.viewOrder(user.getUid());
+        Call<List<LineItem>> callLineItemList = cometbitesAPI.viewCartItems(user.getUid());
 
         Call<List<FoodJoint>> getFoodJoints = cometbitesAPI.getFoodJointList(user.getUid(), user.getEmail().substring(0, 9));
 
