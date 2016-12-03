@@ -6,10 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.List;
-
 import edu.utdallas.cometbites.R;
-import edu.utdallas.cometbites.model.Item;
 import edu.utdallas.cometbites.model.Order;
 import edu.utdallas.cometbites.model.OrderItem;
 

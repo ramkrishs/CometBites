@@ -45,7 +45,7 @@
                 android:text="Your E-Ticket"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/invoice_number"
+                android:id="@+id/code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -53,15 +53,7 @@
                 android:layout_below="@+id/heading_e_ticket"
                 android:text="Invoice number:"
                 android:textSize="20sp" />
-            <TextView
-                android:id="@+id/code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:layout_toRightOf="@+id/invoice_number"
-                android:textSize="20sp"
-                android:layout_marginTop="25dp"/>
+
 
 
             <ImageView

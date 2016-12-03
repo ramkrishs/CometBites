@@ -43,7 +43,7 @@ public class EticketActivity extends AppCompatActivity {
         boolean paid = bundle.getBoolean("paid");
         String code=bundle.getString("code");
         String wait_time=bundle.getString("waitTime");
-        codeView.setText(code);
+        codeView.setText("Invoice Number: " + code);
         waitTimeView.setText(wait_time+" min");
 
         if (!paid) {

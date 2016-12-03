@@ -11,7 +11,6 @@ public class restClientTest {
     @Test
     public void getFoodJointsList() throws Exception {
 
-        System.out.println(restClient.getItemsList("http://cometbites.com/uploads/panda.jpg"));
 
     }
 

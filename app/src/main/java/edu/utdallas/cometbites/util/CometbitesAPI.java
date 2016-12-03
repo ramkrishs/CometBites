@@ -51,12 +51,8 @@ public interface CometbitesAPI{
 
 
     @FormUrlEncoded
-    @POST("register/select/{itemid}")
-    Call<String> selectItem(@Header("UID") String UID,@Path("itemid") String itemid, @Field("name") String itemName, @Field("description") String desc, @Field("price") String price, @Field("fjID") String fjID);
-
-    @FormUrlEncoded
     @POST("register/addquantity/{itemid}")
-    Call<String> informQuantity(@Header("UID") String UID,@Path("itemid") String itemid, @Field("name") String itemName, @Field("description") String desc, @Field("price") String price, @Field("quantity") String quantity);
+    Call<String> informQuantity(@Header("UID") String UID,@Path("itemid") String itemid, @Field("name") String itemName, @Field("description") String desc, @Field("price") String price, @Field("quantity") String quantity, @Field("fjID") String fjID);
 
     @GET("register/order")
     Call<List<LineItem>> viewOrder(@Header("UID") String UID);
