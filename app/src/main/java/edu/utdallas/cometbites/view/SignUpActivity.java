@@ -220,7 +220,7 @@ public class SignUpActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Toast.makeText(SignUpActivity.this, call.toString(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

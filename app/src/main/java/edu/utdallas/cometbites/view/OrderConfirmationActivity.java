@@ -49,7 +49,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<PaymentOptions>> call, Response<List<PaymentOptions>> response) {
 
-                Toast.makeText(getApplicationContext(), response.body().toString(), Toast.LENGTH_SHORT).show();
                 PaymentAdapter paymentAdapter = new PaymentAdapter(getApplicationContext(), response.body());
                 spinner.setAdapter(paymentAdapter);
 
@@ -67,8 +66,6 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 PaymentOptions selectedPayment = (PaymentOptions) spinner.getSelectedView().getTag();
-
-                Toast.makeText(OrderConfirmationActivity.this, "selected Payment " + selectedPayment, Toast.LENGTH_SHORT).show();
 
                 placeOrder(selectedPayment);
 

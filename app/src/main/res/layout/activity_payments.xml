@@ -4,11 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_payments"
     android:layout_width="match_parent"
+    android:background="#e2ba7d"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+
     tools:context="edu.utdallas.cometbites.view.PaymentsActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -26,16 +24,34 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ListView
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/toolbar_payment_list"
-        android:id="@+id/listViewPaymentList"
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:divider="#e2ba7d"
-        android:dividerHeight="10dp"/>
+        android:layout_height="wrap_content">
+
+
+        <ListView
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/listViewPaymentList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:divider="#e2ba7d"
+            android:dividerHeight="10dp"/>
+
+
+        <Button
+            android:id="@+id/addPaymentMethodButton"
+            android:layout_below="@+id/listViewPaymentList"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:text="Add Payment Method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
 </RelativeLayout>

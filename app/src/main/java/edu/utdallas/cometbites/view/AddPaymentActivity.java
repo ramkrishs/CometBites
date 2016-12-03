@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import edu.utdallas.cometbites.R;
 import edu.utdallas.cometbites.util.CometbitesAPI;
 import edu.utdallas.cometbites.util.Constants;
@@ -84,8 +87,8 @@ public class AddPaymentActivity extends AppCompatActivity {
 
         String expDate = expMonth + "/" + expYear;
 
-        SharedPreferences sharedPrefs = getSharedPreferences(Constants.LOGIN_PREFS, 0);
-        String email = sharedPrefs.getString("email", null);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = user.getEmail();
         String netid = email.substring(0, 9);
 
         //Retrofit code
@@ -112,7 +115,13 @@ public class AddPaymentActivity extends AppCompatActivity {
         finishButton.setEnabled(true);
         setResult(RESULT_OK, null);
         Toast.makeText(getApplicationContext(), "Card added successfully!!", Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(AddPaymentActivity.this, BrowseFoodJointsActivity.class);
+        String parent =  this.getIntent().getExtras().getString("parent");
+        Intent i;
+        if(parent == null) {
+            i = new Intent(AddPaymentActivity.this, BrowseFoodJointsActivity.class);
+        }else{
+            i = new Intent(AddPaymentActivity.this, PaymentsActivity.class);
+        }
         startActivity(i);
         finish();
     }
@@ -166,8 +175,6 @@ public class AddPaymentActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent=new Intent(AddPaymentActivity.this, PhoneVerifyActivity.class);
-        startActivity(intent);
         finish();
     }
 

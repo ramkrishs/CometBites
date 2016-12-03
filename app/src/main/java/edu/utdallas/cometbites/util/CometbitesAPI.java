@@ -57,6 +57,9 @@ public interface CometbitesAPI{
     @GET("register/order")
     Call<List<LineItem>> viewOrder(@Header("UID") String UID);
 
+    @GET("users/{netid}/payment")
+    Call<List<PaymentOptions>> getPaymentMethods(@Path("netid") String netid);
+
     @GET("register/checkout")
     Call<List<PaymentOptions>> checkOut(@Header("UID") String UID);
 
@@ -64,8 +67,7 @@ public interface CometbitesAPI{
     @POST("register/order/payment")
     Call<Ticket> placeOrder(@Header("UID") String UID,@Field("cardname") String cardname,@Field("cardno") String cardno, @Field("cvv") String cvv, @Field("expdate") String expdate);
 
-    @FormUrlEncoded
-    @POST("register/order/eticket")
+    @GET("register/order/eticket")
     Call<Ticket> getETicket(@Header("UID") String UID);
 
     @GET("orders/user/{netid}")

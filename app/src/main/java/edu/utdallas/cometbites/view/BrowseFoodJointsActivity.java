@@ -159,8 +159,8 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
             startActivity(i);
             // Handle the camera action
         } else if (id == R.id.nav_payment) {
-            //TODO
-            Toast.makeText(this, "Payment activity will go here", Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(BrowseFoodJointsActivity.this,PaymentsActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
