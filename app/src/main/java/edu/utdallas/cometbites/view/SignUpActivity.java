@@ -23,8 +23,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
 import edu.utdallas.cometbites.R;
-import edu.utdallas.cometbites.model.Card;
-import edu.utdallas.cometbites.model.Customer;
 import edu.utdallas.cometbites.util.CometbitesAPI;
 import edu.utdallas.cometbites.util.Constants;
 import okhttp3.ResponseBody;

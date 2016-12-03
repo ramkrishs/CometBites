@@ -73,4 +73,7 @@ public interface CometbitesAPI{
     @GET("orders/user/{netid}")
     Call<List<Order>> getOrderByNetid(@Path("netid") String netid);
 
+    @GET("users/{netid}")
+    Call<List<Customer>> getUserDetails(@Path("netid") String netid);
+
 }

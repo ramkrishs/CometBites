@@ -3,18 +3,36 @@ package edu.utdallas.cometbites.model;
 import java.util.List;
 
 public class Customer {
-    private int id;
-    private String firstName;
-    private String lastName;
-    private int phoneNumber;
+    private String netid;
+    private String firstname;
+    private String lastname;
+    private int phonenumber;
+    private String emailid;
     private List<Payment> payments;
     //preferred method of payment
 
-    public String getFullName() {
-        return firstName + lastName;
+
+    public String getNetid() {
+        return netid;
     }
 
-    public int getPhoneNumber() {
-        return phoneNumber;
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public int getPhonenumber() {
+        return phonenumber;
+    }
+
+    public String getEmailid() {
+        return emailid;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
     }
 }

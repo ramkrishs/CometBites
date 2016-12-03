@@ -68,11 +68,10 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
         TextView nav_user = (TextView)hView.findViewById(R.id.currUserID);
         nav_user.setText(user.getEmail());
 
-        nav_user.setOnClickListener(new View.OnClickListener() {
+        hView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO clicking on profile link will take here
-                Toast.makeText(getApplicationContext(), "Profile activity will go here", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(BrowseFoodJointsActivity.this, ProfileActivity.class));
             }
         });
 
