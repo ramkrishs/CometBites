@@ -3,3 +3,11 @@
 
 *.iml
 local.properties
+src/main/res/drawable-hdpi/
+src/main/res/drawable-mdpi/
+src/main/res/drawable-xhdpi/
+.gradle/
+.idea/compiler.xml
+.idea/copyright/
+.idea/gradle.xml
+.idea/libraries/

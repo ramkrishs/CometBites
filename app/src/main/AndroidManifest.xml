@@ -47,7 +47,8 @@
 
         <activity android:name=".view.PaymentsActivity" />
         <activity android:name=".view.ProfileActivity" />
-        <activity android:name=".view.OrdersActivity"></activity>
+        <activity android:name=".view.OrdersActivity" />
+        <activity android:name=".view.OrderDescriptionActivity"></activity>
     </application>
 
 </manifest>

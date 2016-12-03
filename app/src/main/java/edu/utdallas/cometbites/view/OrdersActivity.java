@@ -1,6 +1,7 @@
 package edu.utdallas.cometbites.view;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -65,8 +66,9 @@ public class OrdersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Order order = (Order) view.getTag();
-
-                //TODO add code here
+                Intent intent=new Intent(OrdersActivity.this,OrderDescriptionActivity.class);
+                intent.putExtra("order", order);
+                startActivity(intent);
             }
         });
 

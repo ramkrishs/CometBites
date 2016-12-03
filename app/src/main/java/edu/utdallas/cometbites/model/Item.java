@@ -8,8 +8,10 @@ package edu.utdallas.cometbites.model;
         import com.google.gson.annotations.SerializedName;
         import org.apache.commons.lang3.builder.ToStringBuilder;
 
+        import java.io.Serializable;
+
 @Generated("org.jsonschema2pojo")
-public class Item {
+public class Item implements Serializable {
 
     @SerializedName("id")
     @Expose

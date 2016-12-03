@@ -104,7 +104,6 @@ public class BrowseFoodJointsActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent = new Intent(BrowseFoodJointsActivity.this, BrowseItemsActivity.class);
-
                 EditText fjidEditText = ((EditText) view.findViewById(R.id.fjid)) ;
                 String fjid = String.valueOf(fjidEditText.getText());
                 intent.putExtra("fjid", fjid);

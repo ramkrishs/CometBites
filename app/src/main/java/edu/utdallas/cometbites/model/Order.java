@@ -1,6 +1,8 @@
 
         package edu.utdallas.cometbites.model;
+        import java.io.Serializable;
         import java.util.ArrayList;
+        import java.util.LinkedList;
         import java.util.List;
         import javax.annotation.Generated;
         import com.google.gson.annotations.Expose;
@@ -8,7 +10,7 @@
         import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Generated("org.jsonschema2pojo")
-public class Order {
+public class Order implements Serializable {
 
     @SerializedName("fjID")
     @Expose
@@ -27,7 +29,7 @@ public class Order {
     private String invoice;
     @SerializedName("items")
     @Expose
-    private List<Item> items = new ArrayList<Item>();
+    private LinkedList<OrderItem> items = new LinkedList<>();
 
     /**
      * No args constructor for use in serialization
@@ -45,7 +47,7 @@ public class Order {
      * @param date
      * @param fjID
      */
-    public Order(String fjID, String date, String total, String netid, String invoice, List<Item> items) {
+    public Order(String fjID, String date, String total, String netid, String invoice, LinkedList<OrderItem> items) {
         this.fjID = fjID;
         this.date = date;
         this.total = total;
@@ -149,18 +151,11 @@ public class Order {
      * @return
      * The items
      */
-    public List<Item> getItems() {
+    public LinkedList<OrderItem> getItems() {
         return items;
     }
 
-    /**
-     *
-     * @param items
-     * The items
-     */
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
+
 
     @Override
     public String toString() {
