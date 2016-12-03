@@ -1,56 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="100dp"
-    android:background="@drawable/custom_border">
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="113dp"
+    android:layout_marginTop="5dp"
+    card_view:cardCornerRadius="1dp" >
 
-    <RelativeLayout
-        android:id="@+id/joint_image_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
         <ImageView
             android:id="@+id/joint_image"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/chicfile" />
+            android:src="@drawable/create"
+            android:scaleType="fitCenter"
+            android:layout_margin="2dp"/>
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="1dp"
             android:text="fjid"
             android:id="@+id/fjid"
             android:visibility="invisible"
             />
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_below="@id/joint_image_layout"
-        android:background="@drawable/list_view_border">
-
-        <TextView
-            android:id="@+id/est_wait_time_text"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="10dp"
-            android:background="@android:drawable/ic_menu_recent_history"
-            android:textColor="@color/textColor" />
-
-        <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="3dp">
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Body1"
+                android:id="@+id/foodJointTitle"
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="left"
+                android:textColor="@color/grey_800"
+                android:text="@string/action_waittime" />
+            <View
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+            <ImageView
+                android:id="@+id/est_wait_time_text"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="7dp"
+                android:contentDescription="Estimated WaitTime"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_timer"
+                android:tint="@color/grey_500"/>
+            <TextView
             android:id="@+id/wait_time"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="30dp"
-            android:text="10 min"
-            android:textColor="@color/textColor"
-            android:textSize="15sp" />
-    </RelativeLayout>
+            android:layout_marginTop="8dp"
+            android:layout_gravity="right"
+            android:textColor="@color/grey_800"
+            android:layout_marginLeft="1dp"
+            android:text="10 min" />
 
 
-</RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

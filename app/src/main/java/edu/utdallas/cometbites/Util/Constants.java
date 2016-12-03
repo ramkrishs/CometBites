@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Constants {
 
-    public static final String BASEURL="http://35.162.230.252:8080/api/v1/cometbites/";
+    public static final String BASEURL="http://35.162.252.59:8080/api/v1/cometbites/";
     public final static String LOGIN_PREFS = "userDetails";
     public final static String UNIT = "$ ";
 

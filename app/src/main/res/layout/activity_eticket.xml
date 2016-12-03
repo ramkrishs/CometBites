@@ -61,6 +61,7 @@
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_below="@+id/heading_e_ticket"
+                android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/qrcode" />
@@ -77,14 +78,16 @@
 
                 <TextView
                     android:layout_gravity="left"
+                    android:layout_marginLeft="5dp"
                     android:padding="3dip"
                     android:text="Estimated wait time"
                     android:textSize="20dp" />
 
                 <TextView
                     android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
                     android:padding="3dip"
-                    android:text="4-8 minutes"
+                    android:text="4-8 minutes  "
                     android:textSize="20dp"
                     android:id="@+id/fj_wait_time"/>
             </TableRow>
@@ -103,8 +106,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Thank you for using \n COMETBITES!!!"
-                android:textSize="30dp" />
+                android:text="Thank you for using \n CometBites!!!"
+                android:textSize="26dp" />
 
 
             <Button

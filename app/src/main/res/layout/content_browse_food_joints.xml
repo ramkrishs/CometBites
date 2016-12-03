@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/foodJointsListView"
-        android:divider="#e2ba7d"
+        android:divider="@color/white"
         android:dividerHeight="10dp">
 
     </ListView>

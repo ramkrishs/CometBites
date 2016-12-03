@@ -5,6 +5,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
     <style name="cometbites_defaulttheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -12,7 +13,7 @@
         <item name="colorPrimary">@android:color/holo_orange_light</item>
         <item name="colorAccent">@color/utd_color_green</item>
         <item name="android:statusBarColor">@android:color/holo_orange_dark</item>
-        <item name="android:navigationBarColor">@android:color/holo_orange_dark</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
     <style name="Base.Widget.AppCompat.Button.GREEN">

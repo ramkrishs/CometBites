@@ -114,15 +114,14 @@ public class AddPaymentActivity extends AppCompatActivity {
         finishButton.setEnabled(true);
         setResult(RESULT_OK, null);
         Toast.makeText(getApplicationContext(), "Card added successfully!!", Toast.LENGTH_SHORT).show();
-        String parent =  this.getIntent().getExtras().getString("parent");
-        Intent i;
-        if(parent == null) {
-            i = new Intent(AddPaymentActivity.this, BrowseFoodJointsActivity.class);
-        }else{
-            i = new Intent(AddPaymentActivity.this, PaymentsActivity.class);
-        }
+        Bundle bundle= this.getIntent().getExtras();
+        Intent i = new Intent(AddPaymentActivity.this, BrowseFoodJointsActivity.class);;
         startActivity(i);
         finish();
+        if(bundle !=null){
+          String parent =  bundle.getString("parent");
+
+        }
     }
 
     public void onAddPaymentFailed() {

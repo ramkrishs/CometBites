@@ -11,6 +11,7 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -20,6 +21,7 @@
     <style name="cometbites_defaulttheme" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="colorPrimary">@android:color/holo_orange_light</item>
         <item name="colorAccent">@color/utd_color_green</item>
+        <item name="android:navigationBarColor">@color/black</item>
     </style>
 
     <style name="Base.Widget.AppCompat.Button.GREEN">
@@ -30,6 +32,7 @@
         <item name="android:padding">4dp</item>
         <item name="android:fontFamily">sans-serif-thin</item>
         <item name="android:textStyle">normal</item>
+
     </style>
 
 </resources>
